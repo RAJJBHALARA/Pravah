@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pravah | Essence of Luxury</title>
+    <meta name="description"
+        content="Pravah — premium handcrafted perfumes that capture the essence of luxury. Explore our collection of Eau de Parfum and Extrait de Parfum fragrances.">
+    <link rel="icon" type="image/png" href="assets/pravah font text.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="#collection" class="nav-link">Catalog</a>
+            <a href="#our-story" class="nav-link">Our Story</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="assets/pravah font text.png" alt="Pravah" class="brand-logo-img">
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <a href="#" class="nav-icon-link" id="userIconBtn" onclick="toggleAuthModal(); return false;"
+                title="Login / Sign Up">
+                <i class="far fa-user"></i>
+            </a>
+        </div>
+
+        <!-- Mobile Menu Icon -->
+        <div class="mobile-menu-icon" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section / Carousel -->
+    <header class="hero-carousel">
+        <div class="carousel-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-bg" style="background-image: url('assets/blush%20carosal.png');"></div>
+                <div class="slide-img" style="background-image: url('assets/blush%20carosal.png');"></div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('assets/bareaccord%20carosal.png');"></div>
+                <div class="slide-img" style="background-image: url('assets/bareaccord%20carosal.png');"></div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('assets/clear%20carosal.png');"></div>
+                <div class="slide-img" style="background-image: url('assets/clear%20carosal.png');"></div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('assets/golden%20carosal.png');"></div>
+                <div class="slide-img" style="background-image: url('assets/golden%20carosal.png');"></div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('assets/too%20late%20carosal.png');"></div>
+                <div class="slide-img" style="background-image: url('assets/too%20late%20carosal.png');"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Collection -->
+    <section id="collection" class="section collection" data-animate>
+        <div class="section-head">
+            <h2 class="section-title">Pravah Bestsellers</h2>
+        </div>
+
+        <div class="product-grid" id="product-grid">
+            <!-- Products loaded dynamically from Firestore -->
+            <div class="product-grid-loader">
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="our-story" class="section story-section" data-animate>
+        <div class="story-content">
+            <div class="story-text">
+                <h2 class="section-title">Our Story</h2>
+                <p class="story-tagline"><em>Two Cities. One Dream. Endless Flow.</em></p>
+
+                <p class="story-body">It started with a phone call.</p>
+
+                <p class="story-body">Two brothers — separated by 200 kilometres, by two different cities, two different
+                    universities — talking late into the night the way brothers do. About life. About ambition. About
+                    something that had always bothered them both.</p>
+
+                <p class="story-body"><em>Why does luxury have to feel so out of reach?</em></p>
+
+                <p class="story-body">One was buried in textbooks at <strong>Marwadi University, Rajkot</strong>. The
+                    other was pushing boundaries at <strong>NFSU, Gandhinagar</strong>. Different paths. Same
+                    restlessness. Because somewhere between lectures and deadlines, they'd both noticed the same thing —
+                    a world where a single bottle of fine fragrance costs what a student earns in a month. A world where
+                    luxury was a velvet rope, not an open door.</p>
+
+                <p class="story-body">That night, they decided to change it.</p>
+
+                <p class="story-body"><strong>Pravah</strong> was born — not from a boardroom or a billion-dollar lab —
+                    but from two hostel rooms, a shared obsession, and the unshakeable belief that <em>everyone deserves
+                        to feel extraordinary.</em></p>
+
+                <p class="story-body">The name means <strong>flow</strong> — like a river that doesn't ask permission
+                    before it fills every corner with something beautiful. Unstoppable. Natural. Free. That's what a
+                    great scent does. It doesn't care if you're wearing a designer suit or a college hoodie. It just
+                    <em>flows</em> — and suddenly, you feel like the most powerful version of yourself.
+                </p>
+
+                <blockquote class="story-quote">
+                    "Luxury is not a price tag. It is a feeling.<br>And that feeling belongs to everyone."
+                </blockquote>
+
+                <p class="story-body">Today, Pravah is more than a perfume brand. It is a movement — crafted by two
+                    brothers who refused to let geography, or budget, or <em>"that's just how it is"</em> stop them.
+                    One bottle at a time. One person at a time.</p>
+
+                <p class="story-body story-closing"><strong>Feel the Flow. ✦</strong></p>
+
+                <a href="contact.html" class="story-cta">Get in Touch <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 class="footer-heading">Subscribe to our emails</h3>
+        <div class="email-signup" id="emailSignup">
+            <input type="email" class="email-input" id="emailInput" placeholder="Email">
+            <button class="email-submit" onclick="handleEmailSignup()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p class="email-success" id="emailSuccess" style="display: none;">
+            <i class="fas fa-check-circle"></i> Thank you for subscribing!
+        </p>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025, PRAVAH</p>
+            <div class="footer-links">
+                <a href="contact.html">Contact</a>
+                <a href="#our-story">Our Story</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" onclick="window.open('https://wa.me/919909462263', '_blank'); return false;" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="close-menu" id="closeMenuBtn">&times;</span>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="#collection">Catalog</a>
+            <a href="#our-story">Our Story</a>
+            <a href="contact.html">Contact</a>
+            <a href="#" onclick="toggleAuthModal(); return false;">Login / Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Login / Signup Modal -->
+    <div class="auth-modal-overlay" id="authModal" style="display: none;">
+        <div class="auth-modal">
+            <button class="auth-close" onclick="toggleAuthModal()">&times;</button>
+
+            <!-- Login Tab -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login', this)">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('signup', this)">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form" id="auth-login">
+                <p class="auth-note">Login is optional — you can shop without an account!</p>
+                <div class="auth-field">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com">
+                </div>
+                <div class="auth-field">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                </div>
+                <button class="auth-submit" onclick="handleLogin()">Login</button>
+                <p class="auth-message" id="loginMessage"></p>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="auth-signup" style="display: none;">
+                <p class="auth-note">Create an account to track your orders (optional).</p>
+                <div class="auth-field">
+                    <label>Full Name</label>
+                    <input type="text" id="signupName" placeholder="Your name">
+                </div>
+                <div class="auth-field">
+                    <label>Email</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com">
+                </div>
+                <div class="auth-field">
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" placeholder="Min 6 characters">
+                </div>
+                <button class="auth-submit" onclick="handleSignup()">Create Account</button>
+                <p class="auth-message" id="signupMessage"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

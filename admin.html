@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Pravah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ==================== LOGIN SCREEN ==================== -->
+    <div class="admin-login-overlay" id="loginScreen">
+        <div class="admin-login-card">
+            <div class="login-logo">PRAVAH</div>
+            <p class="login-subtitle">Admin Access</p>
+            <div class="login-form">
+                <div class="login-input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password"
+                        onkeypress="if(event.key==='Enter') attemptLogin()">
+                </div>
+                <button class="login-btn" onclick="attemptLogin()">
+                    <span>Unlock Dashboard</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <p class="login-error" id="loginError"></p>
+            </div>
+            <a href="index.html" class="login-back-link"><i class="fas fa-arrow-left"></i> Back to Store</a>
+        </div>
+    </div>
+
+    <!-- ==================== ADMIN DASHBOARD ==================== -->
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                <h2>PRAVAH</h2>
+                <span class="sidebar-badge">Admin</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-section="dashboard"
+                    onclick="switchSection('dashboard', this)">
+                    <i class="fas fa-chart-pie"></i> Dashboard
+                </a>
+                <a href="#" class="sidebar-link" data-section="products" onclick="switchSection('products', this)">
+                    <i class="fas fa-boxes"></i> Products
+                </a>
+                <a href="#" class="sidebar-link" data-section="add-product"
+                    onclick="switchSection('add-product', this)">
+                    <i class="fas fa-plus-circle"></i> Add Product
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-link">
+                    <i class="fas fa-store"></i> View Store
+                </a>
+                <a href="#" class="sidebar-link" onclick="adminLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+
+            <!-- Top Bar -->
+            <div class="admin-topbar">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="admin-page-title" id="pageTitle">Dashboard</h1>
+                <div class="topbar-right">
+                    <span class="admin-greeting">Welcome, Admin</span>
+                </div>
+            </div>
+
+            <!-- ===== SECTION: Dashboard ===== -->
+            <section class="admin-section" id="section-dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-box"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statTotalProducts">0</h3>
+                            <p>Total Products</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);"><i
+                                class="fas fa-fire"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statOnSale">0</h3>
+                            <p>On Sale</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"><i
+                                class="fas fa-cubes"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statInStock">0</h3>
+                            <p>In Stock</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);"><i
+                                class="fas fa-exclamation-triangle"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statOutOfStock">0</h3>
+                            <p>Out of Stock</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-section">
+                    <h2>Recent Products</h2>
+                    <div class="recent-products-grid" id="recentProductsGrid">
+                        <p class="empty-state"><i class="fas fa-inbox"></i> No products yet. Add your first product!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SECTION: Products List ===== -->
+            <section class="admin-section" id="section-products" style="display: none;">
+                <div class="section-header">
+                    <h2>All Products</h2>
+                    <button class="btn-admin-primary" onclick="switchSection('add-product', null)">
+                        <i class="fas fa-plus"></i> Add New
+                    </button>
+                </div>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Original Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <tr>
+                                <td colspan="6" class="empty-state"><i class="fas fa-inbox"></i> No products found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ===== SECTION: Add/Edit Product ===== -->
+            <section class="admin-section" id="section-add-product" style="display: none;">
+                <div class="section-header">
+                    <h2 id="formTitle">Add New Product</h2>
+                </div>
+
+                <form class="admin-form" id="productForm" onsubmit="event.preventDefault(); saveProduct();">
+                    <input type="hidden" id="editProductId" value="">
+
+                    <!-- Basic Info -->
+                    <div class="form-group-title">Basic Information</div>
+                    <div class="admin-form-grid">
+                        <div class="admin-form-field">
+                            <label for="productName">Product Name *</label>
+                            <input type="text" id="productName" placeholder="e.g. Blush Hour" required>
+                        </div>
+                        <div class="admin-form-field">
+                            <label for="productTitle">Display Title *</label>
+                            <input type="text" id="productTitle" placeholder="e.g. Blush Hour | Floral Grace" required>
+                        </div>
+                        <div class="admin-form-field">
+                            <label for="productPrice">Sale Price (₹) *</label>
+                            <input type="text" id="productPrice" placeholder="e.g. 745.00" required>
+                        </div>
+                        <div class="admin-form-field">
+                            <label for="productOriginalPrice">Original Price (₹) *</label>
+                            <input type="text" id="productOriginalPrice" placeholder="e.g. 999.00" required>
+                        </div>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="form-group-title">Product Images</div>
+                    <div class="admin-form-grid">
+                        <div class="admin-form-field">
+                            <label for="productImage">Main Image Filename *</label>
+                            <input type="text" id="productImage" placeholder="e.g. blush shop.jpeg" required>
+                            <small class="field-hint">Place the image in the <code>assets/</code> folder, then type the
+                                filename here</small>
+                        </div>
+                        <div class="admin-form-field">
+                            <label for="productBannerImage">Banner/Carousel Image</label>
+                            <input type="text" id="productBannerImage" placeholder="e.g. blush hour.png">
+                            <small class="field-hint">Optional. Used in homepage carousel</small>
+                        </div>
+                    </div>
+                    <div class="admin-form-field full-width">
+                        <label for="productExtraImages">Extra Gallery Images (comma separated)</label>
+                        <input type="text" id="productExtraImages"
+                            placeholder="e.g. blush hour.png, blush side.jpeg, blush back.jpeg">
+                        <small class="field-hint">These will show as slidable photos on the product page. Add 2-3 extra
+                            images for best results.</small>
+                    </div>
+
+                    <div class="image-preview-box" id="imagePreview" style="display: none;">
+                        <img id="imagePreviewImg" src="" alt="Preview">
+                    </div>
+
+                    <!-- Details -->
+                    <div class="form-group-title">Fragrance Details</div>
+                    <div class="admin-form-grid">
+                        <div class="admin-form-field">
+                            <label for="productFamily">Fragrance Family *</label>
+                            <input type="text" id="productFamily" placeholder="e.g. Floral • Soft • Powdery" required>
+                        </div>
+                        <div class="admin-form-field">
+                            <label for="productConcentration">Concentration</label>
+                            <input type="text" id="productConcentration" placeholder="e.g. Eau de Parfum (25%)">
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="form-group-title">Fragrance Notes</div>
+                    <div class="admin-form-grid three-col">
+                        <div class="admin-form-field">
+                            <label for="noteTop">Top Notes *</label>
+                            <input type="text" id="noteTop" placeholder="e.g. Bergamot, Pear, Pink Pepper" required>
+                        </div>
+                        <div class="admin-form-field">
+                            <label for="noteHeart">Heart Notes *</label>
+                            <input type="text" id="noteHeart" placeholder="e.g. Peony, Rose, Jasmine" required>
+                        </div>
+                        <div class="admin-form-field">
+                            <label for="noteBase">Base Notes *</label>
+                            <input type="text" id="noteBase" placeholder="e.g. White Musk, Vanilla" required>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="form-group-title">Features & Stock</div>
+                    <div class="admin-form-field full-width">
+                        <label for="productFeatures">Features (one per line) *</label>
+                        <textarea id="productFeatures" rows="4"
+                            placeholder="A soft, romantic fragrance perfect for daily wear.&#10;Inspired by the first flush of love.&#10;Long-lasting floral sillage."
+                            required></textarea>
+                    </div>
+                    <div class="admin-form-grid">
+                        <div class="admin-form-field">
+                            <label for="productStock">Stock Quantity</label>
+                            <input type="number" id="productStock" placeholder="e.g. 50" min="0" value="50">
+                        </div>
+                        <div class="admin-form-field">
+                            <label for="productBadge">Badge Text</label>
+                            <input type="text" id="productBadge" placeholder="e.g. Sale, New, Bestseller" value="Sale">
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="admin-form-actions">
+                        <button type="submit" class="btn-admin-primary" id="submitBtn">
+                            <i class="fas fa-save"></i> Save Product
+                        </button>
+                        <button type="button" class="btn-admin-secondary" onclick="resetForm()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="admin-modal-overlay" id="deleteModal" style="display: none;">
+        <div class="admin-modal">
+            <h3><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h3>
+            <p>Are you sure you want to delete <strong id="deleteProductName"></strong>? This action cannot be undone.
+            </p>
+            <div class="modal-actions">
+                <button class="btn-admin-danger" id="confirmDeleteBtn" onclick="confirmDelete()">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+                <button class="btn-admin-secondary" onclick="closeDeleteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="admin-toast" id="adminToast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Product saved successfully!</span>
+    </div>
+
+    <!-- Firebase SDK (CDN - Compat version for simplicity) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>

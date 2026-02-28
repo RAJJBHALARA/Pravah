@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Pravah</title>
+    <meta name="description"
+        content="Contact Pravah — we'd love to hear from you. Reach out for questions about our luxury perfume collection.">
+    <link rel="icon" type="image/png" href="assets/pravah logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#collection" class="nav-link">Catalog</a>
+            <a href="index.html#our-story" class="nav-link">Our Story</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+        </div>
+
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="assets/pravah font text.png" alt="Pravah" class="brand-logo-img">
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <a href="#" class="nav-icon-link" onclick="toggleAuthModal(); return false;" title="Login / Sign Up">
+                <i class="far fa-user"></i>
+            </a>
+        </div>
+
+        <!-- Mobile Menu Icon -->
+        <div class="mobile-menu-icon" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Contact Content -->
+    <main class="contact-container animate-fade-up">
+        <h1 class="page-title">Contact</h1>
+
+        <form class="contact-form" id="contactForm" action="#" method="POST"
+            onsubmit="event.preventDefault(); handleContactSubmit();">
+            <div class="form-row">
+                <input type="text" name="name" placeholder="Name" class="form-input">
+                <input type="email" name="email" placeholder="Email *" required class="form-input">
+            </div>
+
+            <div class="form-row full-width">
+                <input type="tel" name="phone" placeholder="Phone number" class="form-input">
+            </div>
+
+            <div class="form-row full-width">
+                <textarea name="comment" placeholder="Comment" class="form-input form-textarea" rows="5"></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Send</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 class="footer-heading">Subscribe to our emails</h3>
+        <div class="email-signup" id="emailSignup">
+            <input type="email" class="email-input" id="emailInput" placeholder="Email">
+            <button class="email-submit" onclick="handleEmailSignup()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p class="email-success" id="emailSuccess" style="display: none;">
+            <i class="fas fa-check-circle"></i> Thank you for subscribing!
+        </p>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025, PRAVAH</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" onclick="window.open('https://wa.me/919909462263', '_blank'); return false;" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="close-menu" id="closeMenuBtn">&times;</span>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#collection">Catalog</a>
+            <a href="index.html#our-story">Our Story</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- Login / Signup Modal -->
+    <div class="auth-modal-overlay" id="authModal" style="display: none;">
+        <div class="auth-modal">
+            <button class="auth-close" onclick="toggleAuthModal()">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login', this)">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('signup', this)">Sign Up</button>
+            </div>
+            <div class="auth-form" id="auth-login">
+                <p class="auth-note">Login is optional — you can shop without an account!</p>
+                <div class="auth-field">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com">
+                </div>
+                <div class="auth-field">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                </div>
+                <button class="auth-submit" onclick="handleLogin()">Login</button>
+                <p class="auth-message" id="loginMessage"></p>
+            </div>
+            <div class="auth-form" id="auth-signup" style="display: none;">
+                <p class="auth-note">Create an account to track your orders (optional).</p>
+                <div class="auth-field">
+                    <label>Full Name</label>
+                    <input type="text" id="signupName" placeholder="Your name">
+                </div>
+                <div class="auth-field">
+                    <label>Email</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com">
+                </div>
+                <div class="auth-field">
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" placeholder="Min 6 characters">
+                </div>
+                <button class="auth-submit" onclick="handleSignup()">Create Account</button>
+                <p class="auth-message" id="signupMessage"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
