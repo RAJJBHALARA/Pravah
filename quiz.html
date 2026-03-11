@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Scent — Pravah Quiz | Pravah</title>
+    <meta name="description"
+        content="Take the Pravah quiz to discover which premium perfume matches your personality, vibe, and lifestyle.">
+    <link rel="icon" type="image/png" href="assets/pravah font text.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#collection" class="nav-link">Catalog</a>
+            <a href="occasion-guide.html" class="nav-link">Occasion Guide</a>
+            <a href="quiz.html" class="nav-link active">Find Your Scent</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="assets/pravah font text.png" alt="Pravah" class="brand-logo-img">
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <a href="#" class="nav-icon-link" onclick="toggleAuthModal(); return false;" title="Login / Sign Up">
+                <i class="far fa-user"></i>
+            </a>
+        </div>
+
+        <div class="mobile-menu-icon" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <p class="hero-subtitle">Pravah Fragrance Quiz</p>
+        <h1>Find Your<br>Perfect Scent</h1>
+        <p>Answer 4 quick questions and we'll match you with the Pravah perfume that was made for you.</p>
+        <div class="gold-line"></div>
+    </section>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+
+        <!-- Progress Bar -->
+        <div class="quiz-progress">
+            <div class="quiz-progress-step active">
+                <div class="quiz-progress-dot"></div>
+                <span class="quiz-progress-label">Vibe</span>
+            </div>
+            <div class="quiz-progress-step">
+                <div class="quiz-progress-dot"></div>
+                <span class="quiz-progress-label">When</span>
+            </div>
+            <div class="quiz-progress-step">
+                <div class="quiz-progress-dot"></div>
+                <span class="quiz-progress-label">Mood</span>
+            </div>
+            <div class="quiz-progress-step">
+                <div class="quiz-progress-dot"></div>
+                <span class="quiz-progress-label">Longevity</span>
+            </div>
+        </div>
+
+        <!-- Step 1: Vibe -->
+        <div class="quiz-step active" data-question="q1">
+            <p class="quiz-step-number">Question 1 of 4</p>
+            <h2>What's your vibe?</h2>
+            <p class="quiz-subtitle">Pick the energy that feels most like you.</p>
+
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'romantic')">
+                    <span class="quiz-option-emoji">💕</span>
+                    <span class="quiz-option-label">Romantic</span>
+                    <span class="quiz-option-desc">Soft, warm, elegant</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'bold')">
+                    <span class="quiz-option-emoji">🔥</span>
+                    <span class="quiz-option-label">Bold</span>
+                    <span class="quiz-option-desc">Intense, powerful, daring</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'fresh')">
+                    <span class="quiz-option-emoji">🌿</span>
+                    <span class="quiz-option-label">Fresh</span>
+                    <span class="quiz-option-desc">Clean, crisp, energetic</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'mysterious')">
+                    <span class="quiz-option-emoji">🌙</span>
+                    <span class="quiz-option-label">Mysterious</span>
+                    <span class="quiz-option-desc">Deep, intriguing, complex</span>
+                </div>
+            </div>
+
+            <div class="quiz-nav">
+                <span></span>
+                <button class="quiz-btn quiz-btn-next" disabled onclick="quizNextStep()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 2: When -->
+        <div class="quiz-step" data-question="q2">
+            <p class="quiz-step-number">Question 2 of 4</p>
+            <h2>When will you wear it?</h2>
+            <p class="quiz-subtitle">Choose the moment this scent is for.</p>
+
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'daily')">
+                    <span class="quiz-option-emoji">☀️</span>
+                    <span class="quiz-option-label">Daily / College</span>
+                    <span class="quiz-option-desc">Everyday freshness</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'evening')">
+                    <span class="quiz-option-emoji">🌆</span>
+                    <span class="quiz-option-label">Evening Out</span>
+                    <span class="quiz-option-desc">After-hours vibes</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'datenight')">
+                    <span class="quiz-option-emoji">🕯️</span>
+                    <span class="quiz-option-label">Date Night</span>
+                    <span class="quiz-option-desc">Romantic & intimate</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'special')">
+                    <span class="quiz-option-emoji">✨</span>
+                    <span class="quiz-option-label">Special Event</span>
+                    <span class="quiz-option-desc">Make a statement</span>
+                </div>
+            </div>
+
+            <div class="quiz-nav">
+                <button class="quiz-btn quiz-btn-back" onclick="quizPrevStep()">← Back</button>
+                <button class="quiz-btn quiz-btn-next" disabled onclick="quizNextStep()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Mood -->
+        <div class="quiz-step" data-question="q3">
+            <p class="quiz-step-number">Question 3 of 4</p>
+            <h2>Pick a mood</h2>
+            <p class="quiz-subtitle">What feeling do you want your scent to create?</p>
+
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'cozy')">
+                    <span class="quiz-option-emoji">🧣</span>
+                    <span class="quiz-option-label">Cozy & Warm</span>
+                    <span class="quiz-option-desc">Like a warm embrace</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'clean')">
+                    <span class="quiz-option-emoji">💎</span>
+                    <span class="quiz-option-label">Clean & Crisp</span>
+                    <span class="quiz-option-desc">Sharp and refreshing</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'dark')">
+                    <span class="quiz-option-emoji">🖤</span>
+                    <span class="quiz-option-label">Dark & Seductive</span>
+                    <span class="quiz-option-desc">Bold and magnetic</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'floral')">
+                    <span class="quiz-option-emoji">🌸</span>
+                    <span class="quiz-option-label">Soft & Floral</span>
+                    <span class="quiz-option-desc">Delicate and dreamy</span>
+                </div>
+            </div>
+
+            <div class="quiz-nav">
+                <button class="quiz-btn quiz-btn-back" onclick="quizPrevStep()">← Back</button>
+                <button class="quiz-btn quiz-btn-next" disabled onclick="quizNextStep()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Longevity -->
+        <div class="quiz-step" data-question="q4">
+            <p class="quiz-step-number">Question 4 of 4</p>
+            <h2>How long should it last?</h2>
+            <p class="quiz-subtitle">How much staying power do you need?</p>
+
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'allday')">
+                    <span class="quiz-option-emoji">⏳</span>
+                    <span class="quiz-option-label">All Day (12h+)</span>
+                    <span class="quiz-option-desc">Spray once, own the day</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'moderate')">
+                    <span class="quiz-option-emoji">⏰</span>
+                    <span class="quiz-option-label">Good Stretch (6-8h)</span>
+                    <span class="quiz-option-desc">Reliable and balanced</span>
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'light')">
+                    <span class="quiz-option-emoji">🍃</span>
+                    <span class="quiz-option-label">Light Touch</span>
+                    <span class="quiz-option-desc">Subtle and personal</span>
+                </div>
+                <div class="quiz-option" style="opacity: 0; pointer-events: none;"></div>
+            </div>
+
+            <div class="quiz-nav">
+                <button class="quiz-btn quiz-btn-back" onclick="quizPrevStep()">← Back</button>
+                <button class="quiz-btn quiz-btn-next" disabled onclick="showQuizResult()">See My Match ✨</button>
+            </div>
+        </div>
+
+        <!-- Quiz Result -->
+        <div class="quiz-result" id="quizResult">
+            <div class="quiz-result-icon">✨</div>
+            <p class="result-match-label">Your Perfect Match</p>
+            <h2>We Found Your Scent!</h2>
+
+            <div class="result-perfume-card">
+                <h3 class="result-perfume-name">—</h3>
+                <p class="result-perfume-family">—</p>
+
+                <div class="result-notes">
+                    <div class="result-note-row">
+                        <span class="result-note-label">Top:</span>
+                        <span class="result-note-value result-note-top">—</span>
+                    </div>
+                    <div class="result-note-row">
+                        <span class="result-note-label">Heart:</span>
+                        <span class="result-note-value result-note-heart">—</span>
+                    </div>
+                    <div class="result-note-row">
+                        <span class="result-note-label">Base:</span>
+                        <span class="result-note-value result-note-base">—</span>
+                    </div>
+                </div>
+
+                <p class="result-why">—</p>
+
+                <div class="result-actions">
+                    <a href="#" class="result-buy-btn" target="_blank">
+                        Order on WhatsApp <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <button class="result-retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 class="footer-heading">Subscribe to our emails</h3>
+        <div class="email-signup" id="emailSignup">
+            <input type="email" class="email-input" id="emailInput" placeholder="Email">
+            <button class="email-submit" onclick="handleEmailSignup()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p class="email-success" id="emailSuccess" style="display: none;">
+            <i class="fas fa-check-circle"></i> Thank you for subscribing!
+        </p>
+        <div class="footer-bottom">
+            <p>&copy; 2025, PRAVAH</p>
+            <div class="footer-links">
+                <a href="contact.html">Contact</a>
+                <a href="index.html#our-story">Our Story</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="#" onclick="window.open('https://wa.me/919909462263', '_blank'); return false;" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="close-menu" id="closeMenuBtn">&times;</span>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#collection">Catalog</a>
+            <a href="occasion-guide.html">Occasion Guide</a>
+            <a href="quiz.html">Find Your Scent</a>
+            <a href="layering-guide.html">Layering Guide</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="features.js"></script>
+</body>
+
+</html>

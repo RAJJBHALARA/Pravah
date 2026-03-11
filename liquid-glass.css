@@ -1,0 +1,1022 @@
+/* ═══════════════════════════════════════════════════════════════
+   PRAVAH — LIQUID GLASS UI  ·  Apple-Inspired Frosted Glass Theme
+   Loads after styles.css and overrides visual properties only.
+   All Firebase / JS functionality is completely untouched.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Google Font ───────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────────── */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --glass-bg-hover: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-border-top: rgba(255, 255, 255, 0.30);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+    --glass-blur: blur(24px) saturate(180%);
+    --glass-blur-light: blur(14px) saturate(150%);
+    --dark-bg: #06060e;
+    --text-primary: rgba(255, 255, 255, 0.92);
+    --text-secondary: rgba(255, 255, 255, 0.55);
+    --text-muted: rgba(255, 255, 255, 0.35);
+    --accent-gold: #d4a94a;
+    --accent-glow: rgba(212, 169, 74, 0.25);
+    --blob1: #7c3aed;
+    --blob2: #1d4ed8;
+    --blob3: #be185d;
+    --blob4: #0ea5e9;
+    --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Base Reset ─────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', 'Montserrat', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ── Ambient Blob Background ────────────────────────────────────── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 60vw 55vh at 15% 20%, rgba(124, 58, 237, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50vw 45vh at 85% 15%, rgba(29, 78, 216, 0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 55vw 50vh at 70% 75%, rgba(190, 24, 93, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 45vw 40vh at 20% 80%, rgba(14, 165, 233, 0.13) 0%, transparent 70%);
+    animation: blob-drift 20s ease-in-out infinite alternate;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* Subtle noise grain for frosted-glass realism */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.5;
+}
+
+@keyframes blob-drift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(2vw, -2vh) scale(1.04);
+    }
+
+    66% {
+        transform: translate(-2vw, 2vh) scale(0.97);
+    }
+
+    100% {
+        transform: translate(1vw, -1vh) scale(1.02);
+    }
+}
+
+/* Make sure content sits above the blob layer */
+body>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+/* ══════════════════════════════════════════════
+   NAVBAR — Frosted Glass Bar
+   ══════════════════════════════════════════════ */
+.navbar {
+    background: rgba(10, 10, 20, 0.55) !important;
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 4px 24px rgba(0, 0, 0, 0.4) !important;
+    padding: 1.1rem 4% !important;
+}
+
+/* Iridescent top edge shimmer */
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.35) 30%,
+            rgba(255, 255, 255, 0.55) 50%,
+            rgba(255, 255, 255, 0.35) 70%,
+            transparent 100%);
+    pointer-events: none;
+}
+
+.navbar.scrolled {
+    background: rgba(6, 6, 14, 0.72) !important;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Nav links */
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.4px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-primary) !important;
+}
+
+.nav-link::after {
+    background-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Logo */
+.brand-logo-img {
+    filter: brightness(1) invert(0) !important;
+}
+
+/* Nav icons */
+.nav-icon-link {
+    color: var(--text-secondary) !important;
+}
+
+.nav-icon-link:hover {
+    color: var(--text-primary) !important;
+}
+
+/* Mobile menu hamburger */
+.mobile-menu-icon {
+    color: var(--text-primary) !important;
+}
+
+/* ══════════════════════════════════════════════
+   HERO CAROUSEL — no visual change, keep as-is
+   ══════════════════════════════════════════════ */
+.hero-carousel {
+    position: relative;
+    z-index: 1;
+}
+
+/* Glass indicator dots */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.carousel-dot.active {
+    width: 22px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+/* ══════════════════════════════════════════════
+   COLLECTION SECTION
+   ══════════════════════════════════════════════ */
+.section {
+    background: transparent !important;
+}
+
+.collection {
+    padding: 5rem 4% !important;
+}
+
+.section-title {
+    color: var(--text-primary) !important;
+    font-family: 'Playfair Display', serif !important;
+}
+
+/* ── Product Cards ──────────────────────────────────────────────── */
+.product-card {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    backdrop-filter: var(--glass-blur-light) !important;
+    -webkit-backdrop-filter: var(--glass-blur-light) !important;
+    box-shadow: var(--glass-shadow) !important;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition) !important;
+    position: relative;
+}
+
+/* Shimmer highlight on card top edge */
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Inner shine layer */
+.product-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.015) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 0 40px var(--accent-glow) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+.product-image-container {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+}
+
+.product-info {
+    padding: 1rem 1.2rem 1.2rem !important;
+}
+
+.product-vendor {
+    color: var(--text-muted) !important;
+}
+
+.product-name {
+    color: var(--text-primary) !important;
+}
+
+.price-current {
+    color: var(--text-primary) !important;
+}
+
+.price-original {
+    color: var(--text-muted) !important;
+}
+
+/* Sale badge – golden glass */
+.badge {
+    background: linear-gradient(135deg, rgba(212, 169, 74, 0.3), rgba(212, 169, 74, 0.15)) !important;
+    color: var(--accent-gold) !important;
+    border: 1px solid rgba(212, 169, 74, 0.4) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* Skeleton Loaders */
+.skeleton-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-radius: 20px !important;
+    animation: glass-skeleton-pulse 1.8s ease-in-out infinite !important;
+}
+
+@keyframes glass-skeleton-pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 0.15;
+    }
+}
+
+/* Buy Button */
+.btn-buy {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    color: var(--text-primary) !important;
+    border-radius: 999px !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.btn-buy:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ══════════════════════════════════════════════
+   OUR STORY SECTION
+   ══════════════════════════════════════════════ */
+.story-section {
+    background: transparent !important;
+    padding: 6rem 4% !important;
+}
+
+.story-content {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 28px !important;
+    padding: 3.5rem !important;
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+    box-shadow: var(--glass-shadow) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glass shine on story card */
+.story-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    pointer-events: none;
+}
+
+.story-content::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 55%);
+    pointer-events: none;
+    border-radius: 28px;
+}
+
+.story-tagline {
+    color: var(--text-secondary) !important;
+}
+
+.story-body {
+    color: var(--text-secondary) !important;
+}
+
+.story-body strong {
+    color: var(--text-primary) !important;
+}
+
+.story-closing {
+    color: var(--text-primary) !important;
+}
+
+.section-title.story-title {
+    color: var(--text-primary) !important;
+}
+
+h2.section-title {
+    color: var(--text-primary) !important;
+}
+
+/* Story quote — golden left bar */
+.story-quote {
+    background: rgba(212, 169, 74, 0.08) !important;
+    border-left: 3px solid var(--accent-gold) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 0 12px 12px 0 !important;
+}
+
+/* Story CTA button — glass pill */
+.story-cta {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--text-primary) !important;
+    border-radius: 999px !important;
+    padding: 14px 36px !important;
+    backdrop-filter: blur(12px) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+    transition: all var(--transition) !important;
+}
+
+.story-cta:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* ══════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════ */
+.footer {
+    background: rgba(8, 8, 18, 0.7) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-top: 1px solid var(--glass-border) !important;
+    color: var(--text-secondary) !important;
+}
+
+.footer-heading {
+    color: var(--text-primary) !important;
+}
+
+.email-signup {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+.email-input {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    caret-color: white;
+}
+
+.email-input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+.email-submit {
+    color: var(--text-secondary) !important;
+}
+
+.email-submit:hover {
+    color: var(--text-primary) !important;
+}
+
+.footer-links a {
+    color: var(--text-muted) !important;
+}
+
+.footer-links a:hover {
+    color: var(--text-primary) !important;
+}
+
+.footer-bottom p {
+    color: var(--text-muted) !important;
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE MENU OVERLAY
+   ══════════════════════════════════════════════ */
+.mobile-menu-overlay {
+    background: rgba(6, 6, 14, 0.88) !important;
+    backdrop-filter: blur(40px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+    border-right: 1px solid var(--glass-border) !important;
+}
+
+.close-menu {
+    color: var(--text-secondary) !important;
+}
+
+.close-menu:hover {
+    color: var(--text-primary) !important;
+}
+
+.mobile-menu-links a {
+    color: var(--text-secondary) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    font-family: 'Inter', 'Montserrat', sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+}
+
+.mobile-menu-links a:hover {
+    color: var(--text-primary) !important;
+    padding-left: 10px !important;
+}
+
+/* ══════════════════════════════════════════════
+   AUTH MODAL
+   ══════════════════════════════════════════════ */
+.auth-modal-overlay {
+    background: rgba(0, 0, 0, 0.65) !important;
+    backdrop-filter: blur(16px) !important;
+}
+
+.auth-modal {
+    background: rgba(14, 14, 28, 0.82) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.1) inset !important;
+    backdrop-filter: blur(40px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+    border-radius: 24px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top shimmer on modal */
+.auth-modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+}
+
+.auth-close {
+    color: var(--text-muted) !important;
+}
+
+.auth-close:hover {
+    color: var(--text-primary) !important;
+}
+
+.auth-tabs {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.auth-tab {
+    color: var(--text-muted) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.auth-tab.active {
+    color: var(--text-primary) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.auth-note {
+    color: var(--text-muted) !important;
+}
+
+.auth-field label {
+    color: var(--text-secondary) !important;
+}
+
+.auth-field input {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: var(--text-primary) !important;
+    border-radius: 12px !important;
+    caret-color: white;
+}
+
+.auth-field input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+.auth-field input:focus {
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06) !important;
+    outline: none !important;
+}
+
+.auth-submit {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--text-primary) !important;
+    border-radius: 12px !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.auth-submit:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.08) !important;
+}
+
+.auth-message {
+    color: var(--text-secondary) !important;
+}
+
+/* ══════════════════════════════════════════════
+   PRODUCT PAGE — glass detail panel
+   ══════════════════════════════════════════════ */
+.product-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero background on product page */
+.product-container::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 55vw 50vh at 20% 30%, rgba(124, 58, 237, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 45vw 40vh at 80% 70%, rgba(190, 24, 93, 0.12) 0%, transparent 70%);
+}
+
+.breadcrumbs a {
+    color: var(--text-muted) !important;
+}
+
+.breadcrumbs {
+    color: var(--text-muted) !important;
+}
+
+.breadcrumbs a:hover {
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+}
+
+/* Product image container */
+.main-image-container {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+    box-shadow: var(--glass-shadow) !important;
+}
+
+/* Gallery nav buttons */
+.gallery-nav {
+    background: rgba(20, 20, 40, 0.7) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-primary) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+.gallery-nav:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    color: #fff !important;
+}
+
+/* Thumbnails */
+.thumbnail-strip .thumb {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+}
+
+.thumbnail-strip .thumb.active {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Image counter */
+.image-counter {
+    background: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(8px) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Product detail text */
+.vendor-name {
+    color: var(--text-muted) !important;
+    letter-spacing: 2px;
+}
+
+.product-title-large {
+    color: var(--text-primary) !important;
+}
+
+.price-original-large {
+    color: var(--text-muted) !important;
+}
+
+.price-current-large {
+    color: var(--text-primary) !important;
+}
+
+/* Sale badge inline */
+.sale-badge-inline {
+    background: linear-gradient(135deg, rgba(212, 169, 74, 0.25), rgba(212, 169, 74, 0.1)) !important;
+    color: var(--accent-gold) !important;
+    border: 1px solid rgba(212, 169, 74, 0.35) !important;
+    backdrop-filter: blur(6px) !important;
+    border-radius: 999px !important;
+    padding: 3px 12px !important;
+    font-size: 0.72rem !important;
+}
+
+.taxes-note {
+    color: var(--text-muted) !important;
+}
+
+/* Variant buttons */
+.variant-selector label {
+    color: var(--text-secondary) !important;
+}
+
+.variant-btn {
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: var(--text-secondary) !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+}
+
+.variant-btn:hover,
+.variant-btn.selected {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Quantity selector */
+.quantity-selector label {
+    color: var(--text-secondary) !important;
+}
+
+.qty-box {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+.qty-btn {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    border: none !important;
+}
+
+.qty-btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+#qty-input {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    border: none !important;
+}
+
+/* Buy Now button — premium glass pill */
+.btn-buy-now {
+    background: linear-gradient(135deg, rgba(212, 169, 74, 0.3) 0%, rgba(212, 169, 74, 0.1) 100%) !important;
+    border: 1px solid rgba(212, 169, 74, 0.45) !important;
+    color: var(--text-primary) !important;
+    border-radius: 999px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px !important;
+    cursor: pointer !important;
+    backdrop-filter: blur(12px) !important;
+    box-shadow: 0 4px 20px rgba(212, 169, 74, 0.2) !important;
+    transition: all var(--transition) !important;
+}
+
+.btn-buy-now:hover {
+    background: linear-gradient(135deg, rgba(212, 169, 74, 0.45) 0%, rgba(212, 169, 74, 0.2) 100%) !important;
+    border-color: rgba(212, 169, 74, 0.65) !important;
+    box-shadow: 0 8px 40px rgba(212, 169, 74, 0.35) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Dividers */
+.divider {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Meta Info */
+.product-meta-info {
+    color: var(--text-secondary) !important;
+}
+
+.product-meta-info strong {
+    color: var(--text-primary) !important;
+}
+
+.product-meta-info i {
+    color: var(--accent-gold) !important;
+}
+
+/* Notes & Description */
+.notes-section h3,
+.description-section h3 {
+    color: var(--text-primary) !important;
+}
+
+.notes-section h3 i,
+.description-section h3 i {
+    color: var(--accent-gold) !important;
+}
+
+.note-role {
+    color: var(--text-secondary) !important;
+}
+
+.note-role strong {
+    color: var(--text-primary) !important;
+}
+
+#product-features li {
+    color: var(--text-secondary) !important;
+}
+
+/* Share button */
+.share-btn {
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    color: var(--text-secondary) !important;
+    border-radius: 999px !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.share-btn:hover {
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: var(--text-primary) !important;
+}
+
+/* ══════════════════════════════════════════════
+   CONTACT PAGE
+   ══════════════════════════════════════════════ */
+.contact-section {
+    background: transparent !important;
+}
+
+.contact-form-wrapper,
+.contact-form,
+.contact-card {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 24px !important;
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+    box-shadow: var(--glass-shadow) !important;
+    color: var(--text-primary) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-wrapper::before,
+.contact-form::before,
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    pointer-events: none;
+}
+
+.contact-form h2,
+.contact-form h1,
+.contact-form label,
+.contact-card h2,
+.contact-card h3 {
+    color: var(--text-primary) !important;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: var(--text-primary) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(6px) !important;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--text-muted) !important;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05) !important;
+    outline: none !important;
+}
+
+.contact-form button[type="submit"],
+.contact-form .submit-btn,
+.contact-submit {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--text-primary) !important;
+    border-radius: 999px !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.contact-form button[type="submit"]:hover,
+.contact-submit:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ══════════════════════════════════════════════
+   FLOATING BUTTONS
+   ══════════════════════════════════════════════ */
+
+/* WhatsApp — keep green but add glass shadow */
+.whatsapp-float {
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
+    border: 1px solid rgba(37, 211, 102, 0.3) !important;
+}
+
+/* Back to top */
+.back-to-top {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: var(--text-primary) !important;
+    backdrop-filter: blur(16px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.back-to-top:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 6px 30px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE RESPONSIVE TWEAKS
+   ══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.9rem 1rem !important;
+    }
+
+    .story-content {
+        padding: 2rem 1.4rem !important;
+        border-radius: 20px !important;
+    }
+
+    .product-card {
+        border-radius: 16px !important;
+    }
+
+    .auth-modal {
+        border-radius: 20px !important;
+        padding: 2rem 1.5rem !important;
+    }
+
+    /* Reduce blur on mobile for performance */
+    .product-card,
+    .story-content,
+    .footer {
+        backdrop-filter: blur(12px) saturate(140%) !important;
+        -webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+    }
+
+    .mobile-menu-overlay {
+        backdrop-filter: blur(24px) saturate(160%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+    }
+
+    body::before {
+        /* Simpler blobs on mobile for battery efficiency */
+        background:
+            radial-gradient(ellipse 80vw 40vh at 20% 15%, rgba(124, 58, 237, 0.2) 0%, transparent 70%),
+            radial-gradient(ellipse 70vw 35vh at 80% 80%, rgba(190, 24, 93, 0.16) 0%, transparent 70%);
+    }
+}
+
+@media (max-width: 480px) {
+    .story-content {
+        padding: 1.5rem 1.2rem !important;
+    }
+
+    .auth-modal {
+        margin: 1rem !important;
+    }
+}
+
+/* ══════════════════════════════════════════════
+   SELECTION COLOR
+   ══════════════════════════════════════════════ */
+::selection {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+}

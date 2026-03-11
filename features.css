@@ -1,0 +1,1133 @@
+/* ============================================
+   PRAVAH — Features Pages Stylesheet
+   Occasion Guide | Quiz | Layering Guide
+   ============================================ */
+
+/* Shared Page Hero */
+.feature-hero {
+    position: relative;
+    padding: 8rem 4% 5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
+    color: #fff;
+    overflow: hidden;
+}
+
+.feature-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(201, 169, 110, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 70% 30%, rgba(201, 169, 110, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.feature-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, #fff, transparent);
+    pointer-events: none;
+}
+
+.feature-hero .hero-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #c9a96e;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroFadeUp 0.8s 0.2s forwards;
+}
+
+.feature-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroFadeUp 0.8s 0.4s forwards;
+}
+
+.feature-hero p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroFadeUp 0.8s 0.6s forwards;
+}
+
+@keyframes heroFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gold decorative line */
+.gold-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+    margin: 2rem auto;
+    opacity: 0;
+    animation: heroFadeUp 0.8s 0.8s forwards;
+}
+
+/* ============================================
+   OCCASION GUIDE
+   ============================================ */
+
+.occasions-section {
+    padding: 5rem 4%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.occasions-section .section-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.occasions-section .section-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.occasions-section .section-intro p {
+    color: #888;
+    font-size: 0.95rem;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.occasion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.occasion-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.occasion-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+    border-color: #e0e0e0;
+}
+
+.occasion-card-front {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.occasion-card.expanded .occasion-card-front {
+    opacity: 0;
+    transform: scale(0.95);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.occasion-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.occasion-card:hover .occasion-icon {
+    transform: scale(1.1);
+}
+
+/* Occasion-specific icon colors */
+.occasion-card[data-occasion="daily"] .occasion-icon {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    color: #2e7d32;
+}
+.occasion-card[data-occasion="date"] .occasion-icon {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    color: #c62828;
+}
+.occasion-card[data-occasion="formal"] .occasion-icon {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    color: #1565c0;
+}
+.occasion-card[data-occasion="party"] .occasion-icon {
+    background: linear-gradient(135deg, #f3e5f5, #ce93d8);
+    color: #7b1fa2;
+}
+.occasion-card[data-occasion="gifting"] .occasion-icon {
+    background: linear-gradient(135deg, #fff8e1, #ffe082);
+    color: #e65100;
+}
+.occasion-card[data-occasion="special"] .occasion-icon {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    color: #c9a96e;
+}
+
+.occasion-card-front h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: #1a1a1a;
+}
+
+.occasion-card-front .occasion-desc {
+    font-size: 0.85rem;
+    color: #999;
+    line-height: 1.6;
+}
+
+.occasion-click-hint {
+    margin-top: 1.2rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a96e;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.3s;
+}
+
+.occasion-card:hover .occasion-click-hint {
+    gap: 10px;
+}
+
+/* Expanded Card Back */
+.occasion-card-back {
+    display: none;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
+}
+
+.occasion-card.expanded .occasion-card-back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.occasion-card.expanded {
+    background: linear-gradient(135deg, #faf8f5 0%, #f3efe8 100%);
+    border-color: #c9a96e;
+}
+
+.recommended-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #c9a96e;
+    margin-bottom: 1rem;
+}
+
+.occasion-card-back h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.occasion-card-back .occasion-notes {
+    font-size: 0.82rem;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 0.8rem;
+}
+
+.occasion-card-back .occasion-why {
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 280px;
+}
+
+.occasion-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #000;
+    color: #fff;
+    padding: 10px 28px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+}
+
+.occasion-buy-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.occasion-close-hint {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    color: #bbb;
+    cursor: pointer;
+}
+
+/* ============================================
+   QUIZ PAGE
+   ============================================ */
+
+.quiz-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 4rem 4% 6rem;
+}
+
+/* Progress Bar */
+.quiz-progress {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.quiz-progress-step {
+    flex: 1;
+    height: 3px;
+    background: #e5e5e5;
+    position: relative;
+    transition: background 0.5s;
+}
+
+.quiz-progress-step.active {
+    background: #c9a96e;
+}
+
+.quiz-progress-step.completed {
+    background: #1a1a1a;
+}
+
+.quiz-progress-dot {
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e5e5e5;
+    border: 2px solid #fff;
+    z-index: 2;
+    transition: all 0.4s;
+}
+
+.quiz-progress-step.active .quiz-progress-dot {
+    background: #c9a96e;
+    box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.2);
+}
+
+.quiz-progress-step.completed .quiz-progress-dot {
+    background: #1a1a1a;
+}
+
+.quiz-progress-label {
+    position: absolute;
+    right: -20px;
+    top: 18px;
+    font-size: 0.65rem;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transition: color 0.4s;
+}
+
+.quiz-progress-step.active .quiz-progress-label,
+.quiz-progress-step.completed .quiz-progress-label {
+    color: #1a1a1a;
+}
+
+/* Quiz Steps */
+.quiz-step {
+    display: none;
+    animation: quizSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-step.active {
+    display: block;
+}
+
+@keyframes quizSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes quizSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+}
+
+.quiz-step-number {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #c9a96e;
+    margin-bottom: 0.8rem;
+}
+
+.quiz-step h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.quiz-step .quiz-subtitle {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 2.5rem;
+}
+
+/* Quiz Options */
+.quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.quiz-option {
+    border: 2px solid #f0f0f0;
+    border-radius: 14px;
+    padding: 1.8rem 1.5rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+
+.quiz-option::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201, 169, 110, 0.05), rgba(201, 169, 110, 0.02));
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.quiz-option:hover {
+    border-color: #c9a96e;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+}
+
+.quiz-option:hover::before {
+    opacity: 1;
+}
+
+.quiz-option.selected {
+    border-color: #1a1a1a;
+    background: #faf8f5;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+}
+
+.quiz-option-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-option:hover .quiz-option-emoji {
+    transform: scale(1.15);
+}
+
+.quiz-option-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.quiz-option-desc {
+    font-size: 0.75rem;
+    color: #aaa;
+}
+
+/* Quiz Navigation */
+.quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.quiz-btn {
+    padding: 12px 32px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-btn-back {
+    background: none;
+    color: #999;
+    padding-left: 0;
+}
+
+.quiz-btn-back:hover {
+    color: #1a1a1a;
+}
+
+.quiz-btn-next {
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.quiz-btn-next:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.quiz-btn-next:disabled {
+    background: #e0e0e0;
+    color: #bbb;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Quiz Result */
+.quiz-result {
+    display: none;
+    text-align: center;
+    animation: quizSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-result.active {
+    display: block;
+}
+
+.quiz-result-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    animation: resultPop 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes resultPop {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.quiz-result h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.quiz-result .result-match-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #c9a96e;
+    margin-bottom: 2rem;
+}
+
+.result-perfume-card {
+    background: linear-gradient(135deg, #faf8f5 0%, #f3efe8 100%);
+    border: 1px solid #e8e0d4;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    margin: 2rem auto;
+    max-width: 450px;
+    animation: resultPop 0.6s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.result-perfume-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+    color: #1a1a1a;
+}
+
+.result-perfume-family {
+    font-size: 0.82rem;
+    color: #c9a96e;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.result-notes {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.result-note-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.result-note-label {
+    font-weight: 600;
+    color: #1a1a1a;
+    min-width: 50px;
+}
+
+.result-note-value {
+    color: #777;
+}
+
+.result-why {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.result-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #000;
+    color: #fff;
+    padding: 13px 35px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+}
+
+.result-buy-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.result-retake-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 13px 30px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #888;
+    transition: all 0.3s;
+}
+
+.result-retake-btn:hover {
+    border-color: #1a1a1a;
+    color: #1a1a1a;
+}
+
+/* ============================================
+   LAYERING GUIDE
+   ============================================ */
+
+.layering-section {
+    padding: 5rem 4%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.layering-section .section-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.layering-section .section-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.layering-section .section-intro p {
+    color: #888;
+    font-size: 0.95rem;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Pulse Points */
+.pulse-points-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+.pulse-point-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 14px;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+}
+
+.pulse-point-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    border-color: #c9a96e;
+    background: #faf8f5;
+}
+
+.pulse-point-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pulse-point-card:hover .pulse-point-icon {
+    transform: scale(1.2);
+}
+
+.pulse-point-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.pulse-point-card p {
+    font-size: 0.8rem;
+    color: #999;
+    line-height: 1.6;
+}
+
+/* Step-by-step Layering */
+.layering-steps {
+    margin-bottom: 5rem;
+}
+
+.layering-steps h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
+}
+
+.step-cards {
+    display: flex;
+    gap: 0;
+    position: relative;
+}
+
+.step-card {
+    flex: 1;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Connecting arrow between steps */
+.step-card:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #c9a96e;
+    z-index: 2;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.step-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: #1a1a1a;
+}
+
+.step-card p {
+    font-size: 0.82rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* Storage Tips */
+.storage-section {
+    margin-bottom: 5rem;
+}
+
+.storage-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
+}
+
+.storage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.storage-card {
+    background: linear-gradient(135deg, #faf8f5 0%, #f3efe8 100%);
+    border: 1px solid #e8e0d4;
+    border-radius: 14px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.storage-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+}
+
+.storage-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.storage-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.storage-card p {
+    font-size: 0.82rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* Combo Recommendations */
+.combos-section {
+    margin-bottom: 3rem;
+}
+
+.combos-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.combos-section .combos-intro {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 3rem;
+}
+
+.combo-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.combo-card {
+    border: 1px solid #f0f0f0;
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+    background: #fff;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.combo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    border-color: #c9a96e;
+}
+
+.combo-names {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.combo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: #1a1a1a;
+}
+
+.combo-plus {
+    color: #c9a96e;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.combo-vibe {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a96e;
+    margin-bottom: 0.8rem;
+}
+
+.combo-desc {
+    font-size: 0.82rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* Shared CTA section at bottom */
+.feature-cta-section {
+    text-align: center;
+    padding: 5rem 4%;
+    background: linear-gradient(135deg, #faf8f5 0%, #f3efe8 100%);
+}
+
+.feature-cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.feature-cta-section p {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.feature-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #000;
+    color: #fff;
+    padding: 14px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-cta-btn:hover {
+    background: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Scroll Animations for feature pages */
+[data-feature-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-feature-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for grid children */
+[data-feature-animate].stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-feature-animate].stagger-children.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+[data-feature-animate].stagger-children.visible > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+[data-feature-animate].stagger-children.visible > *:nth-child(3) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+[data-feature-animate].stagger-children.visible > *:nth-child(4) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+[data-feature-animate].stagger-children.visible > *:nth-child(5) { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
+[data-feature-animate].stagger-children.visible > *:nth-child(6) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+
+/* ============================================
+   RESPONSIVE — All Features
+   ============================================ */
+
+@media (max-width: 768px) {
+    .feature-hero {
+        padding: 6rem 6% 4rem;
+    }
+
+    .feature-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    /* Occasion */
+    .occasion-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .occasion-card-front {
+        min-height: auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .occasion-card.expanded .occasion-card-back {
+        min-height: auto;
+    }
+
+    /* Quiz */
+    .quiz-options {
+        grid-template-columns: 1fr;
+    }
+
+    .quiz-progress-label {
+        display: none;
+    }
+
+    /* Layering */
+    .pulse-points-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .step-cards {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .step-card:not(:last-child)::after {
+        content: '↓';
+        right: 50%;
+        top: auto;
+        bottom: -10px;
+        transform: translateX(50%);
+    }
+
+    .storage-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .combo-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .pulse-points-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Occasion Guide — Which Pravah Perfume is Right? | Pravah</title>
+    <meta name="description"
+        content="Find the perfect Pravah perfume for every occasion — daily wear, date night, formal events, parties, gifting, and more.">
+    <link rel="icon" type="image/png" href="assets/pravah font text.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#collection" class="nav-link">Catalog</a>
+            <a href="occasion-guide.html" class="nav-link active">Occasion Guide</a>
+            <a href="quiz.html" class="nav-link">Find Your Scent</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="assets/pravah font text.png" alt="Pravah" class="brand-logo-img">
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <a href="#" class="nav-icon-link" onclick="toggleAuthModal(); return false;" title="Login / Sign Up">
+                <i class="far fa-user"></i>
+            </a>
+        </div>
+
+        <div class="mobile-menu-icon" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <p class="hero-subtitle">Pravah Occasion Guide</p>
+        <h1>The Right Scent for<br>Every Moment</h1>
+        <p>Life is full of moments — each one deserves a fragrance that matches its energy. Discover which Pravah
+            perfume elevates your every occasion.</p>
+        <div class="gold-line"></div>
+    </section>
+
+    <!-- Occasion Cards -->
+    <section class="occasions-section">
+        <div class="section-intro" data-feature-animate>
+            <h2>Choose Your Occasion</h2>
+            <p>Tap on any occasion to discover the Pravah perfume that matches perfectly.</p>
+        </div>
+
+        <div class="occasion-grid" data-feature-animate>
+
+            <!-- Daily / College -->
+            <div class="occasion-card" data-occasion="daily" onclick="toggleOccasionCard(this)">
+                <div class="occasion-card-front">
+                    <div class="occasion-icon"><i class="fas fa-sun"></i></div>
+                    <h3>Daily / College</h3>
+                    <p class="occasion-desc">Fresh, light, and effortless — for your everyday hustle.</p>
+                    <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="occasion-card-back">
+                    <span class="recommended-label">Recommended</span>
+                    <h3>Clear Theory</h3>
+                    <p class="occasion-notes">Fresh • Citrus • Intellectual</p>
+                    <p class="occasion-why">Sharp mint and lime cut through the monsoon heat. Subtle enough for class,
+                        cool enough to make an impression at the canteen.</p>
+                    <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Clear%20Theory%20for%20daily%20wear."
+                        target="_blank" class="occasion-buy-btn">
+                        Buy Now <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <span class="occasion-close-hint">tap to close</span>
+                </div>
+            </div>
+
+            <!-- Date Night -->
+            <div class="occasion-card" data-occasion="date" onclick="toggleOccasionCard(this)">
+                <div class="occasion-card-front">
+                    <div class="occasion-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Date Night</h3>
+                    <p class="occasion-desc">Sensual, deep, and unforgettably magnetic.</p>
+                    <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="occasion-card-back">
+                    <span class="recommended-label">Recommended</span>
+                    <h3>Too Late Tonight</h3>
+                    <p class="occasion-notes">Gourmand • Dark • Seductive</p>
+                    <p class="occasion-why">Dark cherry, rum, and chocolate create an intoxicating aura. The kind of
+                        scent that makes them lean in closer.</p>
+                    <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Too%20Late%20Tonight%20for%20a%20date."
+                        target="_blank" class="occasion-buy-btn">
+                        Buy Now <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <span class="occasion-close-hint">tap to close</span>
+                </div>
+            </div>
+
+            <!-- Formal / Office -->
+            <div class="occasion-card" data-occasion="formal" onclick="toggleOccasionCard(this)">
+                <div class="occasion-card-front">
+                    <div class="occasion-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Formal / Office</h3>
+                    <p class="occasion-desc">Sophisticated, subtle, and commands quiet respect.</p>
+                    <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="occasion-card-back">
+                    <span class="recommended-label">Recommended</span>
+                    <h3>Bare Accord</h3>
+                    <p class="occasion-notes">Musk • Clean • Elemental</p>
+                    <p class="occasion-why">A "skin scent" that smells like the cleanest, most polished version of you.
+                        Professional without trying. Effortlessly impressive.</p>
+                    <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Bare%20Accord%20for%20office%20wear."
+                        target="_blank" class="occasion-buy-btn">
+                        Buy Now <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <span class="occasion-close-hint">tap to close</span>
+                </div>
+            </div>
+
+            <!-- Party / Night Out -->
+            <div class="occasion-card" data-occasion="party" onclick="toggleOccasionCard(this)">
+                <div class="occasion-card-front">
+                    <div class="occasion-icon"><i class="fas fa-glass-cheers"></i></div>
+                    <h3>Party / Night Out</h3>
+                    <p class="occasion-desc">Bold, long-lasting, and impossible to ignore.</p>
+                    <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="occasion-card-back">
+                    <span class="recommended-label">Recommended</span>
+                    <h3>Golden Resin</h3>
+                    <p class="occasion-notes">Oriental • Amber • Spicy</p>
+                    <p class="occasion-why">Cinnamon, oud, and vanilla create a golden aura that lasts all night.
+                        Designed to be the last thing they remember.</p>
+                    <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Golden%20Resin%20for%20parties."
+                        target="_blank" class="occasion-buy-btn">
+                        Buy Now <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <span class="occasion-close-hint">tap to close</span>
+                </div>
+            </div>
+
+            <!-- Gifting -->
+            <div class="occasion-card" data-occasion="gifting" onclick="toggleOccasionCard(this)">
+                <div class="occasion-card-front">
+                    <div class="occasion-icon"><i class="fas fa-gift"></i></div>
+                    <h3>Gifting</h3>
+                    <p class="occasion-desc">The perfect gift they'll actually love and use.</p>
+                    <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="occasion-card-back">
+                    <span class="recommended-label">Recommended</span>
+                    <h3>Blush Hour</h3>
+                    <p class="occasion-notes">Floral • Soft • Powdery</p>
+                    <p class="occasion-why">Universally loved and impossible to go wrong with. Soft peony and rose make
+                        this the gift that says "I put thought into this."</p>
+                    <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Blush%20Hour%20as%20a%20gift."
+                        target="_blank" class="occasion-buy-btn">
+                        Buy Now <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <span class="occasion-close-hint">tap to close</span>
+                </div>
+            </div>
+
+            <!-- Special Events -->
+            <div class="occasion-card" data-occasion="special" onclick="toggleOccasionCard(this)">
+                <div class="occasion-card-front">
+                    <div class="occasion-icon"><i class="fas fa-crown"></i></div>
+                    <h3>Special Events</h3>
+                    <p class="occasion-desc">Weddings, festivals, milestones — make it unforgettable.</p>
+                    <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="occasion-card-back">
+                    <span class="recommended-label">Recommended</span>
+                    <h3>Golden Resin</h3>
+                    <p class="occasion-notes">Oriental • Amber • Spicy</p>
+                    <p class="occasion-why">Luxurious and rich — this is the scent for the moments that define you.
+                        Weddings, festivals, celebrations — go all out.</p>
+                    <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Golden%20Resin%20for%20a%20special%20event."
+                        target="_blank" class="occasion-buy-btn">
+                        Buy Now <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <span class="occasion-close-hint">tap to close</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="feature-cta-section" data-feature-animate>
+        <h2>Still Unsure?</h2>
+        <p>Take our quick quiz and let us match you with your perfect fragrance.</p>
+        <a href="quiz.html" class="feature-cta-btn">Take the Quiz <i class="fas fa-arrow-right"></i></a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 class="footer-heading">Subscribe to our emails</h3>
+        <div class="email-signup" id="emailSignup">
+            <input type="email" class="email-input" id="emailInput" placeholder="Email">
+            <button class="email-submit" onclick="handleEmailSignup()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p class="email-success" id="emailSuccess" style="display: none;">
+            <i class="fas fa-check-circle"></i> Thank you for subscribing!
+        </p>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025, PRAVAH</p>
+            <div class="footer-links">
+                <a href="contact.html">Contact</a>
+                <a href="index.html#our-story">Our Story</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" onclick="window.open('https://wa.me/919909462263', '_blank'); return false;" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="close-menu" id="closeMenuBtn">&times;</span>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#collection">Catalog</a>
+            <a href="occasion-guide.html">Occasion Guide</a>
+            <a href="quiz.html">Find Your Scent</a>
+            <a href="layering-guide.html">Layering Guide</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="features.js"></script>
+</body>
+
+</html>
