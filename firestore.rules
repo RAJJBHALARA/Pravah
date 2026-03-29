@@ -1,0 +1,36 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Check if the user is an admin by verifying their email
+    // IMPORTANT: Replace 'admin@pravah.com' with your actual admin email address
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'admin@pravah.com';
+    }
+    
+    // Products Collection
+    // Anyone can view products (needed for the storefront)
+    // Only authenticated admins can create, update, or delete products
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Subscribers Collection
+    // Anyone can add their email to subscribe (newsletter)
+    // Only authenticated admins can read the list of subscribers
+    match /subscribers/{subscriberId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Contacts Collection
+    // Anyone can submit a contact form
+    // Only authenticated admins can read the submitted messages
+    match /contacts/{contactId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

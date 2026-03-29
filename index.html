@@ -15,7 +15,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="features.css">
-    <link rel="stylesheet" href="holi-theme.css?v=2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
@@ -24,11 +23,11 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-left">
-            <a href="index.html" class="nav-link active">Home</a>
-            <a href="#collection" class="nav-link">Catalog</a>
-            <a href="occasion-guide.html" class="nav-link">Occasion Guide</a>
-            <a href="quiz.html" class="nav-link">Find Your Scent</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="#home" class="nav-link active" data-page="page-home">Home</a>
+            <a href="#collection" class="nav-link" data-page="page-home" data-scroll="collection">Catalog</a>
+            <a href="#occasion-guide" class="nav-link" data-page="page-occasion-guide">Occasion Guide</a>
+            <a href="#quiz" class="nav-link" data-page="page-quiz">Find Your Scent</a>
+            <a href="#contact" class="nav-link" data-page="page-contact">Contact</a>
         </div>
 
         <div class="logo-container">
@@ -49,6 +48,12 @@
             <i class="fas fa-bars"></i>
         </div>
     </nav>
+
+    <!-- SPA Container -->
+    <div id="spa-container">
+
+    <!-- HOME PAGE -->
+    <div class="spa-page active" id="page-home">
 
     <!-- Hero Section / Carousel -->
     <header class="hero-carousel">
@@ -141,10 +146,517 @@
 
                 <p class="story-body story-closing"><strong>Feel the Flow. ✦</strong></p>
 
-                <a href="contact.html" class="story-cta">Get in Touch <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact" class="story-cta" data-page="page-contact">Get in Touch <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
+
+    </div><!-- /page-home -->
+
+    <!-- CONTACT PAGE -->
+    <div class="spa-page" id="page-contact">
+        <main class="contact-container">
+            <h1 class="page-title">Contact</h1>
+            <form class="contact-form" id="contactForm" action="#" method="POST"
+                onsubmit="event.preventDefault(); handleContactSubmit();">
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Name" class="form-input">
+                    <input type="email" name="email" placeholder="Email *" required class="form-input">
+                </div>
+                <div class="form-row full-width">
+                    <input type="tel" name="phone" placeholder="Phone number" class="form-input">
+                </div>
+                <div class="form-row full-width">
+                    <textarea name="comment" placeholder="Comment" class="form-input form-textarea" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- OCCASION GUIDE PAGE -->
+    <div class="spa-page" id="page-occasion-guide">
+        <section class="feature-hero">
+            <p class="hero-subtitle">Pravah Occasion Guide</p>
+            <h1>The Right Scent for<br>Every Moment</h1>
+            <p>Life is full of moments — each one deserves a fragrance that matches its energy. Discover which Pravah
+                perfume elevates your every occasion.</p>
+            <div class="gold-line"></div>
+        </section>
+
+        <section class="occasions-section">
+            <div class="section-intro" data-feature-animate>
+                <h2>Choose Your Occasion</h2>
+                <p>Tap on any occasion to discover the Pravah perfume that matches perfectly.</p>
+            </div>
+
+            <div class="occasion-grid" data-feature-animate>
+                <div class="occasion-card" data-occasion="daily" onclick="toggleOccasionCard(this)">
+                    <div class="occasion-card-front">
+                        <div class="occasion-icon"><i class="fas fa-sun"></i></div>
+                        <h3>Daily / College</h3>
+                        <p class="occasion-desc">Fresh, light, and effortless — for your everyday hustle.</p>
+                        <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="occasion-card-back">
+                        <span class="recommended-label">Recommended</span>
+                        <h3>Clear Theory</h3>
+                        <p class="occasion-notes">Fresh • Citrus • Intellectual</p>
+                        <p class="occasion-why">Sharp mint and lime cut through the monsoon heat. Subtle enough for class,
+                            cool enough to make an impression at the canteen.</p>
+                        <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Clear%20Theory%20for%20daily%20wear."
+                            target="_blank" class="occasion-buy-btn">
+                            Buy Now <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <span class="occasion-close-hint">tap to close</span>
+                    </div>
+                </div>
+
+                <div class="occasion-card" data-occasion="date" onclick="toggleOccasionCard(this)">
+                    <div class="occasion-card-front">
+                        <div class="occasion-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Date Night</h3>
+                        <p class="occasion-desc">Sensual, deep, and unforgettably magnetic.</p>
+                        <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="occasion-card-back">
+                        <span class="recommended-label">Recommended</span>
+                        <h3>Too Late Tonight</h3>
+                        <p class="occasion-notes">Gourmand • Dark • Seductive</p>
+                        <p class="occasion-why">Dark cherry, rum, and chocolate create an intoxicating aura. The kind of
+                            scent that makes them lean in closer.</p>
+                        <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Too%20Late%20Tonight%20for%20a%20date."
+                            target="_blank" class="occasion-buy-btn">
+                            Buy Now <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <span class="occasion-close-hint">tap to close</span>
+                    </div>
+                </div>
+
+                <div class="occasion-card" data-occasion="formal" onclick="toggleOccasionCard(this)">
+                    <div class="occasion-card-front">
+                        <div class="occasion-icon"><i class="fas fa-briefcase"></i></div>
+                        <h3>Formal / Office</h3>
+                        <p class="occasion-desc">Sophisticated, subtle, and commands quiet respect.</p>
+                        <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="occasion-card-back">
+                        <span class="recommended-label">Recommended</span>
+                        <h3>Bare Accord</h3>
+                        <p class="occasion-notes">Musk • Clean • Elemental</p>
+                        <p class="occasion-why">A "skin scent" that smells like the cleanest, most polished version of you.
+                            Professional without trying. Effortlessly impressive.</p>
+                        <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Bare%20Accord%20for%20office%20wear."
+                            target="_blank" class="occasion-buy-btn">
+                            Buy Now <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <span class="occasion-close-hint">tap to close</span>
+                    </div>
+                </div>
+
+                <div class="occasion-card" data-occasion="party" onclick="toggleOccasionCard(this)">
+                    <div class="occasion-card-front">
+                        <div class="occasion-icon"><i class="fas fa-glass-cheers"></i></div>
+                        <h3>Party / Night Out</h3>
+                        <p class="occasion-desc">Bold, long-lasting, and impossible to ignore.</p>
+                        <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="occasion-card-back">
+                        <span class="recommended-label">Recommended</span>
+                        <h3>Golden Resin</h3>
+                        <p class="occasion-notes">Oriental • Amber • Spicy</p>
+                        <p class="occasion-why">Cinnamon, oud, and vanilla create a golden aura that lasts all night.
+                            Designed to be the last thing they remember.</p>
+                        <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Golden%20Resin%20for%20parties."
+                            target="_blank" class="occasion-buy-btn">
+                            Buy Now <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <span class="occasion-close-hint">tap to close</span>
+                    </div>
+                </div>
+
+                <div class="occasion-card" data-occasion="gifting" onclick="toggleOccasionCard(this)">
+                    <div class="occasion-card-front">
+                        <div class="occasion-icon"><i class="fas fa-gift"></i></div>
+                        <h3>Gifting</h3>
+                        <p class="occasion-desc">The perfect gift they'll actually love and use.</p>
+                        <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="occasion-card-back">
+                        <span class="recommended-label">Recommended</span>
+                        <h3>Blush Hour</h3>
+                        <p class="occasion-notes">Floral • Soft • Powdery</p>
+                        <p class="occasion-why">Universally loved and impossible to go wrong with. Soft peony and rose make
+                            this the gift that says "I put thought into this."</p>
+                        <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Blush%20Hour%20as%20a%20gift."
+                            target="_blank" class="occasion-buy-btn">
+                            Buy Now <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <span class="occasion-close-hint">tap to close</span>
+                    </div>
+                </div>
+
+                <div class="occasion-card" data-occasion="special" onclick="toggleOccasionCard(this)">
+                    <div class="occasion-card-front">
+                        <div class="occasion-icon"><i class="fas fa-crown"></i></div>
+                        <h3>Special Events</h3>
+                        <p class="occasion-desc">Weddings, festivals, milestones — make it unforgettable.</p>
+                        <span class="occasion-click-hint">Discover <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="occasion-card-back">
+                        <span class="recommended-label">Recommended</span>
+                        <h3>Golden Resin</h3>
+                        <p class="occasion-notes">Oriental • Amber • Spicy</p>
+                        <p class="occasion-why">Luxurious and rich — this is the scent for the moments that define you.
+                            Weddings, festivals, celebrations — go all out.</p>
+                        <a href="https://wa.me/919909462263?text=Hi!%20I%20want%20to%20order%20Golden%20Resin%20for%20a%20special%20event."
+                            target="_blank" class="occasion-buy-btn">
+                            Buy Now <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <span class="occasion-close-hint">tap to close</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-cta-section" data-feature-animate>
+            <h2>Still Unsure?</h2>
+            <p>Take our quick quiz and let us match you with your perfect fragrance.</p>
+            <a href="#quiz" class="feature-cta-btn" data-page="page-quiz">Take the Quiz <i class="fas fa-arrow-right"></i></a>
+        </section>
+    </div>
+
+    <!-- QUIZ PAGE -->
+    <div class="spa-page" id="page-quiz">
+        <section class="feature-hero">
+            <p class="hero-subtitle">Pravah Fragrance Quiz</p>
+            <h1>Find Your<br>Perfect Scent</h1>
+            <p>Answer 4 quick questions and we'll match you with the Pravah perfume that was made for you.</p>
+            <div class="gold-line"></div>
+        </section>
+
+        <div class="quiz-container">
+            <div class="quiz-progress">
+                <div class="quiz-progress-step active">
+                    <div class="quiz-progress-dot"></div>
+                    <span class="quiz-progress-label">Vibe</span>
+                </div>
+                <div class="quiz-progress-step">
+                    <div class="quiz-progress-dot"></div>
+                    <span class="quiz-progress-label">When</span>
+                </div>
+                <div class="quiz-progress-step">
+                    <div class="quiz-progress-dot"></div>
+                    <span class="quiz-progress-label">Mood</span>
+                </div>
+                <div class="quiz-progress-step">
+                    <div class="quiz-progress-dot"></div>
+                    <span class="quiz-progress-label">Longevity</span>
+                </div>
+            </div>
+
+            <div class="quiz-step active" data-question="q1">
+                <p class="quiz-step-number">Question 1 of 4</p>
+                <h2>What's your vibe?</h2>
+                <p class="quiz-subtitle">Pick the energy that feels most like you.</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'romantic')">
+                        <span class="quiz-option-emoji">&#x1F495;</span>
+                        <span class="quiz-option-label">Romantic</span>
+                        <span class="quiz-option-desc">Soft, warm, elegant</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'bold')">
+                        <span class="quiz-option-emoji">&#x1F525;</span>
+                        <span class="quiz-option-label">Bold</span>
+                        <span class="quiz-option-desc">Intense, powerful, daring</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'fresh')">
+                        <span class="quiz-option-emoji">&#x1F33F;</span>
+                        <span class="quiz-option-label">Fresh</span>
+                        <span class="quiz-option-desc">Clean, crisp, energetic</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'mysterious')">
+                        <span class="quiz-option-emoji">&#x1F319;</span>
+                        <span class="quiz-option-label">Mysterious</span>
+                        <span class="quiz-option-desc">Deep, intriguing, complex</span>
+                    </div>
+                </div>
+                <div class="quiz-nav">
+                    <span></span>
+                    <button class="quiz-btn quiz-btn-next" disabled onclick="quizNextStep()">Next &#x2192;</button>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-question="q2">
+                <p class="quiz-step-number">Question 2 of 4</p>
+                <h2>When will you wear it?</h2>
+                <p class="quiz-subtitle">Choose the moment this scent is for.</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'daily')">
+                        <span class="quiz-option-emoji">&#x2600;&#xFE0F;</span>
+                        <span class="quiz-option-label">Daily / College</span>
+                        <span class="quiz-option-desc">Everyday freshness</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'evening')">
+                        <span class="quiz-option-emoji">&#x1F306;</span>
+                        <span class="quiz-option-label">Evening Out</span>
+                        <span class="quiz-option-desc">After-hours vibes</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'datenight')">
+                        <span class="quiz-option-emoji">&#x1F56F;&#xFE0F;</span>
+                        <span class="quiz-option-label">Date Night</span>
+                        <span class="quiz-option-desc">Romantic &amp; intimate</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'special')">
+                        <span class="quiz-option-emoji">&#x2728;</span>
+                        <span class="quiz-option-label">Special Event</span>
+                        <span class="quiz-option-desc">Make a statement</span>
+                    </div>
+                </div>
+                <div class="quiz-nav">
+                    <button class="quiz-btn quiz-btn-back" onclick="quizPrevStep()">&#x2190; Back</button>
+                    <button class="quiz-btn quiz-btn-next" disabled onclick="quizNextStep()">Next &#x2192;</button>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-question="q3">
+                <p class="quiz-step-number">Question 3 of 4</p>
+                <h2>Pick a mood</h2>
+                <p class="quiz-subtitle">What feeling do you want your scent to create?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'cozy')">
+                        <span class="quiz-option-emoji">&#x1F9E3;</span>
+                        <span class="quiz-option-label">Cozy &amp; Warm</span>
+                        <span class="quiz-option-desc">Like a warm embrace</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'clean')">
+                        <span class="quiz-option-emoji">&#x1F48E;</span>
+                        <span class="quiz-option-label">Clean &amp; Crisp</span>
+                        <span class="quiz-option-desc">Sharp and refreshing</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'dark')">
+                        <span class="quiz-option-emoji">&#x1F5A4;</span>
+                        <span class="quiz-option-label">Dark &amp; Seductive</span>
+                        <span class="quiz-option-desc">Bold and magnetic</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'floral')">
+                        <span class="quiz-option-emoji">&#x1F338;</span>
+                        <span class="quiz-option-label">Soft &amp; Floral</span>
+                        <span class="quiz-option-desc">Delicate and dreamy</span>
+                    </div>
+                </div>
+                <div class="quiz-nav">
+                    <button class="quiz-btn quiz-btn-back" onclick="quizPrevStep()">&#x2190; Back</button>
+                    <button class="quiz-btn quiz-btn-next" disabled onclick="quizNextStep()">Next &#x2192;</button>
+                </div>
+            </div>
+
+            <div class="quiz-step" data-question="q4">
+                <p class="quiz-step-number">Question 4 of 4</p>
+                <h2>How long should it last?</h2>
+                <p class="quiz-subtitle">How much staying power do you need?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'allday')">
+                        <span class="quiz-option-emoji">&#x23F3;</span>
+                        <span class="quiz-option-label">All Day (12h+)</span>
+                        <span class="quiz-option-desc">Spray once, own the day</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'moderate')">
+                        <span class="quiz-option-emoji">&#x23F0;</span>
+                        <span class="quiz-option-label">Good Stretch (6-8h)</span>
+                        <span class="quiz-option-desc">Reliable and balanced</span>
+                    </div>
+                    <div class="quiz-option" onclick="selectQuizOption(this.closest('.quiz-step'), 'light')">
+                        <span class="quiz-option-emoji">&#x1F343;</span>
+                        <span class="quiz-option-label">Light Touch</span>
+                        <span class="quiz-option-desc">Subtle and personal</span>
+                    </div>
+                    <div class="quiz-option" style="opacity: 0; pointer-events: none;"></div>
+                </div>
+                <div class="quiz-nav">
+                    <button class="quiz-btn quiz-btn-back" onclick="quizPrevStep()">&#x2190; Back</button>
+                    <button class="quiz-btn quiz-btn-next" disabled onclick="showQuizResult()">See My Match &#x2728;</button>
+                </div>
+            </div>
+
+            <div class="quiz-result" id="quizResult">
+                <div class="quiz-result-icon">&#x2728;</div>
+                <p class="result-match-label">Your Perfect Match</p>
+                <h2>We Found Your Scent!</h2>
+                <div class="result-perfume-card">
+                    <h3 class="result-perfume-name">&mdash;</h3>
+                    <p class="result-perfume-family">&mdash;</p>
+                    <div class="result-notes">
+                        <div class="result-note-row">
+                            <span class="result-note-label">Top:</span>
+                            <span class="result-note-value result-note-top">&mdash;</span>
+                        </div>
+                        <div class="result-note-row">
+                            <span class="result-note-label">Heart:</span>
+                            <span class="result-note-value result-note-heart">&mdash;</span>
+                        </div>
+                        <div class="result-note-row">
+                            <span class="result-note-label">Base:</span>
+                            <span class="result-note-value result-note-base">&mdash;</span>
+                        </div>
+                    </div>
+                    <p class="result-why">&mdash;</p>
+                    <div class="result-actions">
+                        <a href="#" class="result-buy-btn" target="_blank">
+                            Order on WhatsApp <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <button class="result-retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYERING GUIDE PAGE -->
+    <div class="spa-page" id="page-layering-guide">
+        <section class="feature-hero">
+            <p class="hero-subtitle">The Pravah Fragrance Guide</p>
+            <h1>Master the Art of<br>Layering Perfumes</h1>
+            <p>Learn where to spray, how to layer, and the secrets to making your Pravah scent last all day.</p>
+            <div class="gold-line"></div>
+        </section>
+
+        <section class="layering-section">
+            <div class="section-intro" data-feature-animate>
+                <h2>Where to Apply</h2>
+                <p>Pulse points are warm areas where blood vessels are close to the skin. The heat helps diffuse and amplify
+                    your fragrance throughout the day.</p>
+            </div>
+            <div class="pulse-points-grid" data-feature-animate data-feature-animate-class="stagger-children">
+                <div class="pulse-point-card" data-feature-animate>
+                    <span class="pulse-point-icon">&#x1F91A;</span>
+                    <h4>Inner Wrists</h4>
+                    <p>The classic spot. Spray and let it dry — never rub your wrists together, it crushes the top notes.</p>
+                </div>
+                <div class="pulse-point-card" data-feature-animate>
+                    <span class="pulse-point-icon">&#x1F4AB;</span>
+                    <h4>Neck &amp; Throat</h4>
+                    <p>One spray on each side of your neck. The warmth here projects your scent as you move.</p>
+                </div>
+                <div class="pulse-point-card" data-feature-animate>
+                    <span class="pulse-point-icon">&#x1F442;</span>
+                    <h4>Behind the Ears</h4>
+                    <p>A subtle, intimate spot. Perfect for close conversations and for scent that lasts.</p>
+                </div>
+                <div class="pulse-point-card" data-feature-animate>
+                    <span class="pulse-point-icon">&#x1F454;</span>
+                    <h4>Chest &amp; Collar</h4>
+                    <p>A spray on your chest or shirt collar creates a scent "cloud" that follows you everywhere.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="layering-section">
+            <div class="layering-steps" data-feature-animate>
+                <h3>The 3-Step Layering Method</h3>
+                <div class="step-cards">
+                    <div class="step-card" data-feature-animate>
+                        <div class="step-number">1</div>
+                        <h4>Moisturize First</h4>
+                        <p>Apply an unscented body lotion or petroleum jelly on pulse points. Hydrated skin holds fragrance
+                            2-3x longer than dry skin.</p>
+                    </div>
+                    <div class="step-card" data-feature-animate>
+                        <div class="step-number">2</div>
+                        <h4>Spray Your Perfume</h4>
+                        <p>Hold the bottle 6 inches away and spray 2-3 pumps on pulse points. Let it air dry — don't rub.
+                            Less is more.</p>
+                    </div>
+                    <div class="step-card" data-feature-animate>
+                        <div class="step-number">3</div>
+                        <h4>Lock It In</h4>
+                        <p>For maximum longevity, spray once on your clothes (inner elbow of a jacket or scarf). Fabric
+                            holds scent for hours longer than skin.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="layering-section">
+            <div class="storage-section" data-feature-animate>
+                <h3>How to Store Your Perfume</h3>
+                <div class="storage-grid">
+                    <div class="storage-card" data-feature-animate>
+                        <span class="storage-icon">&#x1F321;&#xFE0F;</span>
+                        <h4>Avoid Heat</h4>
+                        <p>Keep your Pravah bottle away from direct sunlight and heat. Room temperature or a drawer is ideal.</p>
+                    </div>
+                    <div class="storage-card" data-feature-animate>
+                        <span class="storage-icon">&#x1F4A7;</span>
+                        <h4>No Humidity</h4>
+                        <p>The bathroom is the worst spot for perfume. Moisture breaks down fragrance molecules faster.</p>
+                    </div>
+                    <div class="storage-card" data-feature-animate>
+                        <span class="storage-icon">&#x1F4E6;</span>
+                        <h4>Keep the Box</h4>
+                        <p>Store your bottle in its original box when not in use. It protects from light and temperature changes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="layering-section">
+            <div class="combos-section" data-feature-animate>
+                <h3>Pravah Combos That Layer Beautifully</h3>
+                <p class="combos-intro">Try these combinations for a scent that's uniquely you.</p>
+                <div class="combo-cards">
+                    <div class="combo-card" data-feature-animate>
+                        <div class="combo-names">
+                            <span class="combo-name">Bare Accord</span>
+                            <span class="combo-plus">+</span>
+                            <span class="combo-name">Blush Hour</span>
+                        </div>
+                        <p class="combo-vibe">&#x2726; Clean Romance</p>
+                        <p class="combo-desc">The clean musk base of Bare Accord amplifies the soft florals of Blush Hour.
+                            Result: a skin-close romantic scent that smells expensive.</p>
+                    </div>
+                    <div class="combo-card" data-feature-animate>
+                        <div class="combo-names">
+                            <span class="combo-name">Clear Theory</span>
+                            <span class="combo-plus">+</span>
+                            <span class="combo-name">Golden Resin</span>
+                        </div>
+                        <p class="combo-vibe">&#x2726; Fresh Luxury</p>
+                        <p class="combo-desc">Open with Clear Theory's citrus freshness, then the amber warmth of Golden
+                            Resin takes over. Day-to-night in one combo.</p>
+                    </div>
+                    <div class="combo-card" data-feature-animate>
+                        <div class="combo-names">
+                            <span class="combo-name">Bare Accord</span>
+                            <span class="combo-plus">+</span>
+                            <span class="combo-name">Too Late Tonight</span>
+                        </div>
+                        <p class="combo-vibe">&#x2726; Addictive Depth</p>
+                        <p class="combo-desc">The skin musk of Bare Accord softens Too Late's intensity, creating a
+                            seductive scent that's dark without being overwhelming.</p>
+                    </div>
+                    <div class="combo-card" data-feature-animate>
+                        <div class="combo-names">
+                            <span class="combo-name">Blush Hour</span>
+                            <span class="combo-plus">+</span>
+                            <span class="combo-name">Golden Resin</span>
+                        </div>
+                        <p class="combo-vibe">&#x2726; Warm Floral</p>
+                        <p class="combo-desc">Soft petals meet rich amber. This combo is wedding-ready — elegant, warm, and
+                            unforgettably beautiful.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-cta-section" data-feature-animate>
+            <h2>Ready to Find Your Scent?</h2>
+            <p>Take our quick quiz or explore our collection.</p>
+            <a href="#quiz" class="feature-cta-btn" data-page="page-quiz">Take the Quiz <i class="fas fa-arrow-right"></i></a>
+        </section>
+    </div>
+
+    </div><!-- /spa-container -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -160,8 +672,9 @@
         <div class="footer-bottom">
             <p>&copy; 2025, PRAVAH</p>
             <div class="footer-links">
-                <a href="contact.html">Contact</a>
-                <a href="#our-story">Our Story</a>
+                <a href="#contact" data-page="page-contact">Contact</a>
+                <a href="#our-story" data-page="page-home" data-scroll="our-story">Our Story</a>
+                <a href="admin.html">Admin</a>
             </div>
         </div>
     </footer>
@@ -177,12 +690,12 @@
             <span class="close-menu" id="closeMenuBtn">&times;</span>
         </div>
         <div class="mobile-menu-links">
-            <a href="index.html">Home</a>
-            <a href="#collection">Catalog</a>
-            <a href="occasion-guide.html">Occasion Guide</a>
-            <a href="quiz.html">Find Your Scent</a>
-            <a href="layering-guide.html">Layering Guide</a>
-            <a href="contact.html">Contact</a>
+            <a href="#home" data-page="page-home">Home</a>
+            <a href="#collection" data-page="page-home" data-scroll="collection">Catalog</a>
+            <a href="#occasion-guide" data-page="page-occasion-guide">Occasion Guide</a>
+            <a href="#quiz" data-page="page-quiz">Find Your Scent</a>
+            <a href="#layering-guide" data-page="page-layering-guide">Layering Guide</a>
+            <a href="#contact" data-page="page-contact">Contact</a>
             <a href="#" onclick="toggleAuthModal(); return false;">Login / Sign Up</a>
         </div>
     </div>
@@ -245,7 +758,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
     <script src="js/firebase-config.js"></script>
     <script src="script.js"></script>
-    <script src="holi-theme.js?v=2"></script>
+    <script src="features.js"></script>
 </body>
 
 </html>

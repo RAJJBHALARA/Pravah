@@ -61,7 +61,7 @@ const quizData = {
             family: 'Floral • Soft • Powdery',
             notes: { top: 'Bergamot, Pear, Pink Pepper', heart: 'Peony, Rose, Jasmine', base: 'White Musk, Vanilla, Sandalwood' },
             why: 'A soft, romantic fragrance perfect for your everyday elegance. It wraps you in delicate florals without being overpowering.',
-            price: '745.00'
+            price: '599.00'
         },
         'Bare Accord': {
             name: 'Bare Accord',
@@ -69,7 +69,7 @@ const quizData = {
             family: 'Musk • Clean • Elemental',
             notes: { top: 'Ambrette Seeds, Sea Salt', heart: 'Iris, Orris Root', base: 'Iso E Super, Ambroxan, Skin Musk' },
             why: 'Your skin, but better. This minimalistic scent reacts with your body to create something uniquely you.',
-            price: '745.00'
+            price: '599.00'
         },
         'Clear Theory': {
             name: 'Clear Theory',
@@ -77,7 +77,7 @@ const quizData = {
             family: 'Fresh • Citrus • Intellectual',
             notes: { top: 'Lime, Mint, Juniper Berries', heart: 'Ginger, Vetiver', base: 'Cedarwood, Patchouli' },
             why: 'Sharp, crisp, and designed for focus. A scent that cuts through the noise with icy freshness.',
-            price: '745.00'
+            price: '599.00'
         },
         'Golden Resin': {
             name: 'Golden Resin',
@@ -85,7 +85,7 @@ const quizData = {
             family: 'Oriental • Amber • Spicy',
             notes: { top: 'Cinnamon, Cardamom', heart: 'Labdanum, Benzoin', base: 'Vanilla Bean, Oud, Liquid Amber' },
             why: 'Luxuriously deep and enveloping. This warm amber scent makes every moment feel like a golden hour.',
-            price: '745.00'
+            price: '599.00'
         },
         'Too Late': {
             name: 'Too Late Tonight',
@@ -93,7 +93,7 @@ const quizData = {
             family: 'Gourmand • Dark • Seductive',
             notes: { top: 'Bitter Almond, Rum', heart: 'Black Cherry, Turkish Rose', base: 'Tonka Bean, Vetiver, Dark Chocolate' },
             why: 'Daring and unapologetically bold. This is the scent that turns heads and starts conversations.',
-            price: '745.00'
+            price: '599.00'
         }
     }
 };

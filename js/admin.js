@@ -3,11 +3,11 @@
 // ============================================
 
 // --- Configuration ---
-const ADMIN_PASSWORD = "pravah2024";
 const PRODUCTS_COLLECTION = "products";
 
 // --- Firebase Init ---
 let db;
+let auth;
 function initFirebase() {
     if (!window.firebaseConfig) {
         showToast("Firebase config not found!", true);
@@ -19,6 +19,7 @@ function initFirebase() {
             firebase.initializeApp(window.firebaseConfig);
         }
         db = firebase.firestore();
+        auth = firebase.auth();
         return true;
     } catch (e) {
         console.error("Firebase init error:", e);
@@ -28,41 +29,73 @@ function initFirebase() {
 }
 
 // --- Login / Logout ---
-function attemptLogin() {
+async function attemptLogin() {
+    const emailInput = document.getElementById('adminEmail');
     const input = document.getElementById('adminPassword');
     const error = document.getElementById('loginError');
-    const password = input.value.trim();
+    const email = emailInput ? emailInput.value.trim() : '';
+    const password = input ? input.value.trim() : '';
 
-    if (password === ADMIN_PASSWORD) {
-        sessionStorage.setItem('pravah_admin', 'true');
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('adminDashboard').style.display = 'flex';
-        if (initFirebase()) {
-            loadAllProducts();
+    if (!email || !password) {
+        error.textContent = "Please enter both admin email and password.";
+        if(input) {
+            input.classList.add('shake');
+            setTimeout(() => input.classList.remove('shake'), 500);
         }
-    } else {
-        error.textContent = "Incorrect password. Try again.";
-        input.value = '';
-        input.classList.add('shake');
-        setTimeout(() => input.classList.remove('shake'), 500);
+        return;
+    }
+
+    try {
+        if (!auth) initFirebase();
+        const btn = document.querySelector('.login-btn');
+        if (btn) btn.innerHTML = '<span>Logging in...</span><i class="fas fa-spinner fa-spin"></i>';
+        
+        await auth.signInWithEmailAndPassword(email, password);
+        // Success is handled by onAuthStateChanged in checkSession()
+    } catch (err) {
+        const btn = document.querySelector('.login-btn');
+        if (btn) btn.innerHTML = '<span>Unlock Dashboard</span><i class="fas fa-arrow-right"></i>';
+        error.textContent = err.message || "Incorrect credentials. Try again.";
+        if (input) {
+            input.value = '';
+            input.classList.add('shake');
+            setTimeout(() => input.classList.remove('shake'), 500);
+        }
     }
 }
 
-function adminLogout() {
-    sessionStorage.removeItem('pravah_admin');
-    document.getElementById('adminDashboard').style.display = 'none';
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('adminPassword').value = '';
-    document.getElementById('loginError').textContent = '';
+async function adminLogout() {
+    if (auth) {
+        try {
+            await auth.signOut();
+        } catch(e) {
+            console.error("Logout error", e);
+        }
+    }
 }
 
 function checkSession() {
-    if (sessionStorage.getItem('pravah_admin') === 'true') {
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('adminDashboard').style.display = 'flex';
-        if (initFirebase()) {
-            loadAllProducts();
-        }
+    if (initFirebase()) {
+        auth.onAuthStateChanged((user) => {
+            const btn = document.querySelector('.login-btn');
+            if (btn) btn.innerHTML = '<span>Unlock Dashboard</span><i class="fas fa-arrow-right"></i>';
+            
+            if (user) {
+                // Logged in
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'flex';
+                loadAllProducts();
+            } else {
+                // Logged out
+                document.getElementById('adminDashboard').style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'flex';
+                const pwInput = document.getElementById('adminPassword');
+                const emInput = document.getElementById('adminEmail');
+                if (pwInput) pwInput.value = '';
+                if (emInput) emInput.value = '';
+                document.getElementById('loginError').textContent = '';
+            }
+        });
     }
 }
 

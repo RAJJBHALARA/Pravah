@@ -2,7 +2,7 @@
 const productsDB = {
     'Blush Hour': {
         title: "Blush Hour | Floral Grace",
-        price: "745.00",
+        price: "599.00",
         originalPrice: "999.00",
         image: "assets/blush catalogue.jpeg",
         images: ["assets/blush catalogue.jpeg", "assets/blush catalogue2.jpeg"],
@@ -23,7 +23,7 @@ const productsDB = {
     },
     'Bare Accord': {
         title: "Bare Accord | Skin Scent",
-        price: "745.00",
+        price: "599.00",
         originalPrice: "999.00",
         image: "assets/bare cata.png",
         images: ["assets/bare cata.png", "assets/bare catalogue 2.png"],
@@ -31,9 +31,9 @@ const productsDB = {
         family: "Musk • Clean • Elemental",
         concentration: "Extrait de Parfum (30%)",
         notes: {
-            top: "Ambrette Seeds, Sea Salt",
-            heart: "Iris, Orris Root",
-            base: "Iso E Super, Ambroxan, Skin Musk"
+            top: "Orange",
+            heart: "Sandalwood, Rose",
+            base: "Agarwood, Amber"
         },
         features: [
             "Your skin, but better. A scent that whispers.",
@@ -44,7 +44,7 @@ const productsDB = {
     },
     'Clear Theory': {
         title: "Clear Theory | Modern Mind",
-        price: "745.00",
+        price: "599.00",
         originalPrice: "999.00",
         image: "assets/clear catalogue.jpeg",
         images: ["assets/clear catalogue.jpeg", "assets/clear catalogue2.png"],
@@ -65,7 +65,7 @@ const productsDB = {
     },
     'Golden Resin': {
         title: "Golden Resin | Amber Warmth",
-        price: "745.00",
+        price: "599.00",
         originalPrice: "999.00",
         image: "assets/golden catalogue.jpeg",
         images: ["assets/golden catalogue.jpeg", "assets/golden catalogue2.jpeg"],
@@ -86,7 +86,7 @@ const productsDB = {
     },
     'Too Late': {
         title: "Too Late Tonight | Intoxicating",
-        price: "745.00",
+        price: "599.00",
         originalPrice: "999.00",
         image: "assets/too catalogue.jpeg",
         images: ["assets/too catalogue.jpeg", "assets/too catalogue2.jpeg"],
@@ -457,6 +457,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check auth state
     checkAuthState();
+
+    // Clear validation errors on input
+    ['loginEmail', 'loginPassword', 'signupName', 'signupEmail', 'signupPassword'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', () => clearFieldError(id));
+        }
+    });
+
+    // Close auth modal by clicking backdrop or pressing Escape.
+    document.addEventListener('click', (event) => {
+        const authModal = document.getElementById('authModal');
+        if (!authModal || !authModal.classList.contains('active')) return;
+        if (event.target === authModal) {
+            toggleAuthModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const authModal = document.getElementById('authModal');
+        if (authModal && authModal.classList.contains('active')) {
+            toggleAuthModal();
+        }
+    });
 });
 
 // ============================================
@@ -466,32 +491,92 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleAuthModal() {
     const modal = document.getElementById('authModal');
     if (!modal) return;
-    if (modal.style.display === 'none' || !modal.style.display) {
+    const isOpen = modal.classList.contains('active');
+
+    if (!isOpen) {
         modal.style.display = 'flex';
+        requestAnimationFrame(() => modal.classList.add('active'));
         document.body.style.overflow = 'hidden';
     } else {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
+        setTimeout(() => {
+            if (!modal.classList.contains('active')) {
+                modal.style.display = 'none';
+            }
+        }, 240);
         document.body.style.overflow = '';
     }
 }
 
 function switchAuthTab(tab, btn) {
-    document.getElementById('auth-login').style.display = tab === 'login' ? 'block' : 'none';
-    document.getElementById('auth-signup').style.display = tab === 'signup' ? 'block' : 'none';
+    const loginForm = document.getElementById('auth-login');
+    const signupForm = document.getElementById('auth-signup');
+    if (!loginForm || !signupForm) return;
+
+    loginForm.style.display = tab === 'login' ? 'block' : 'none';
+    signupForm.style.display = tab === 'signup' ? 'block' : 'none';
+
     document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
     if (btn) btn.classList.add('active');
+}
+
+// --- Validation Helpers ---
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function showFieldError(inputId, message) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    input.classList.add('auth-input-error');
+    // Remove existing error span
+    const existing = input.parentElement.querySelector('.field-error');
+    if (existing) existing.remove();
+    // Add error message below input
+    const span = document.createElement('span');
+    span.className = 'field-error';
+    span.textContent = message;
+    input.parentElement.appendChild(span);
+}
+
+function clearFieldError(inputId) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    input.classList.remove('auth-input-error');
+    const existing = input.parentElement.querySelector('.field-error');
+    if (existing) existing.remove();
+}
+
+function clearAllFieldErrors(ids) {
+    ids.forEach(id => clearFieldError(id));
 }
 
 async function handleLogin() {
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
     const msg = document.getElementById('loginMessage');
+    msg.textContent = '';
+    clearAllFieldErrors(['loginEmail', 'loginPassword']);
 
-    if (!email || !password) {
-        msg.textContent = 'Please fill in both fields.';
-        msg.style.color = '#e74c3c';
-        return;
+    let hasError = false;
+
+    if (!email) {
+        showFieldError('loginEmail', 'Email is required.');
+        hasError = true;
+    } else if (!isValidEmail(email)) {
+        showFieldError('loginEmail', 'Please enter a valid email address.');
+        hasError = true;
     }
+
+    if (!password) {
+        showFieldError('loginPassword', 'Password is required.');
+        hasError = true;
+    } else if (password.length < 6) {
+        showFieldError('loginPassword', 'Password must be at least 6 characters.');
+        hasError = true;
+    }
+
+    if (hasError) return;
 
     initFirestoreForStorefront();
 
@@ -518,18 +603,33 @@ async function handleSignup() {
     const email = document.getElementById('signupEmail').value.trim();
     const password = document.getElementById('signupPassword').value;
     const msg = document.getElementById('signupMessage');
+    msg.textContent = '';
+    clearAllFieldErrors(['signupName', 'signupEmail', 'signupPassword']);
 
-    if (!email || !password) {
-        msg.textContent = 'Please fill in email and password.';
-        msg.style.color = '#e74c3c';
-        return;
+    let hasError = false;
+
+    if (!name) {
+        showFieldError('signupName', 'Full name is required.');
+        hasError = true;
     }
 
-    if (password.length < 6) {
-        msg.textContent = 'Password must be at least 6 characters.';
-        msg.style.color = '#e74c3c';
-        return;
+    if (!email) {
+        showFieldError('signupEmail', 'Email is required.');
+        hasError = true;
+    } else if (!isValidEmail(email)) {
+        showFieldError('signupEmail', 'Please enter a valid email address.');
+        hasError = true;
     }
+
+    if (!password) {
+        showFieldError('signupPassword', 'Password is required.');
+        hasError = true;
+    } else if (password.length < 6) {
+        showFieldError('signupPassword', 'Password must be at least 6 characters.');
+        hasError = true;
+    }
+
+    if (hasError) return;
 
     initFirestoreForStorefront();
 
@@ -692,4 +792,151 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('img').forEach(img => {
         if (!img.loading) img.loading = 'lazy';
     });
+});
+
+// ============================================
+// SPA ROUTER — Smooth Page Navigation
+// ============================================
+
+const SPA_ROUTES = {
+    'home': 'page-home',
+    'contact': 'page-contact',
+    'occasion-guide': 'page-occasion-guide',
+    'quiz': 'page-quiz',
+    'layering-guide': 'page-layering-guide',
+    'collection': { page: 'page-home', scroll: 'collection' },
+    'our-story': { page: 'page-home', scroll: 'our-story' }
+};
+
+function navigateTo(pageId, scrollTarget) {
+    const pages = document.querySelectorAll('.spa-page');
+    const targetPage = document.getElementById(pageId);
+    if (!targetPage) return;
+
+    const currentPage = document.querySelector('.spa-page.active');
+    if (currentPage === targetPage && !scrollTarget) return;
+
+    // Switch pages
+    pages.forEach(p => p.classList.remove('active'));
+    targetPage.classList.add('active');
+
+    // Scroll to top or specific section
+    if (scrollTarget) {
+        requestAnimationFrame(() => {
+            const el = document.getElementById(scrollTarget);
+            if (el) {
+                setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 80);
+            }
+        });
+    } else {
+        window.scrollTo({ top: 0 });
+    }
+
+    // Update nav active states
+    updateNavActive(pageId);
+
+    // Re-trigger animations on the new page
+    spaReplayAnimations(targetPage);
+
+    // Update document title
+    const titles = {
+        'page-home': 'Pravah | Essence of Luxury',
+        'page-contact': 'Contact | Pravah',
+        'page-occasion-guide': 'Occasion Guide | Pravah',
+        'page-quiz': 'Find Your Scent | Pravah',
+        'page-layering-guide': 'Layering Guide | Pravah'
+    };
+    document.title = titles[pageId] || 'Pravah | Essence of Luxury';
+}
+
+function updateNavActive(pageId) {
+    // Desktop nav
+    document.querySelectorAll('.nav-left .nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === pageId) {
+            link.classList.add('active');
+        }
+    });
+    // Mobile menu
+    document.querySelectorAll('.mobile-menu-links a[data-page]').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === pageId) {
+            link.classList.add('active');
+        }
+    });
+}
+
+function spaReplayAnimations(page) {
+    // Re-trigger feature-hero CSS animations
+    page.querySelectorAll('.feature-hero .hero-subtitle, .feature-hero h1, .feature-hero p:not(.quiz-subtitle), .feature-hero .gold-line').forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight; // force reflow
+        el.style.animation = '';
+    });
+
+    // Re-observe scroll-triggered animations
+    const els = page.querySelectorAll('[data-animate]:not(.visible), [data-feature-animate]:not(.visible)');
+    if (els.length > 0) {
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        els.forEach(el => obs.observe(el));
+    }
+}
+
+function handleSpaRoute() {
+    const hash = window.location.hash.slice(1) || 'home';
+    const route = SPA_ROUTES[hash];
+
+    if (!route) return;
+
+    if (typeof route === 'string') {
+        navigateTo(route);
+    } else {
+        navigateTo(route.page, route.scroll);
+    }
+}
+
+// SPA link click handler — intercept all [data-page] links
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('[data-page]');
+    if (!link) return;
+
+    e.preventDefault();
+
+    const pageId = link.dataset.page;
+    const scrollTarget = link.dataset.scroll;
+    const hash = link.getAttribute('href');
+
+    if (hash && hash !== '#') {
+        history.pushState(null, '', hash);
+    }
+
+    navigateTo(pageId, scrollTarget);
+
+    if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur();
+    }
+
+    // Close mobile menu if open
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Handle browser back/forward
+window.addEventListener('popstate', handleSpaRoute);
+
+// Handle initial route on page load
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash) {
+        handleSpaRoute();
+    }
 });
